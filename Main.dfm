@@ -116,8 +116,8 @@ object FormMain: TFormMain
           object grid_Mine: TAdvStringGrid
             Left = 320
             Top = 86
-            Width = 323
-            Height = 643
+            Width = 324
+            Height = 644
             Cursor = crDefault
             TabStop = False
             BevelInner = bvNone

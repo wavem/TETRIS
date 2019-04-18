@@ -70,12 +70,29 @@ TFormMain *FormMain;
 __fastcall TFormMain::TFormMain(TComponent* Owner)
 	: TForm(Owner)
 {
+	InitTetris();
+	RefreshMyGameView();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::InitTetris() {
 	Notebook_Main->PageIndex = 1; // Login
 	m_row = 0;
 	m_col = 0;
 	grid_Mine->Colors[m_col][m_row] = clBlue;
+
+	for(int i = 0 ; i < 10 ; i++) {
+		for(int j = 0 ; j < 20 ; j++) {
+			m_MyView[i][j] = 0;
+        }
+	}
+
+	m_Current_X = 0;
+	m_Current_Y = 0;
 }
 //---------------------------------------------------------------------------
+
+
 void __fastcall TFormMain::btn_GOClick(TObject *Sender)
 {
 	Notebook_Main->PageIndex = 2;
@@ -91,29 +108,71 @@ void __fastcall TFormMain::btn_LogOutClick(TObject *Sender)
 void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 
 {
+	// Set Start Point (Temp)
+	int t_Current_X = m_Current_X;
+	int t_Current_Y = m_Current_Y;
+	int t_Current_X_Old = t_Current_X;
+	int t_Current_Y_Old = t_Current_Y;
+	int t_Current_X_New = 0;
+	int t_Current_Y_New = 0;
+
+
 	if(Key == VK_RIGHT) {
-		grid_Mine->Colors[m_col][m_row] = clBlack;
-		m_col++;
-		grid_Mine->Colors[m_col][m_row] = clBlue;
+		if(t_Current_Y < 9) {
+			t_Current_Y++;
+		}
 	}
 
 	if(Key == VK_LEFT) {
-		grid_Mine->Colors[m_col][m_row] = clBlack;
-		m_col--;
-		grid_Mine->Colors[m_col][m_row] = clBlue;
+		if(t_Current_Y > 0) {
+			t_Current_Y--;
+		}
 	}
 
 	if(Key == VK_UP) {
-		grid_Mine->Colors[m_col][m_row] = clBlack;
-		m_row--;
-		grid_Mine->Colors[m_col][m_row] = clBlue;
+		if(t_Current_X > 0) {
+			t_Current_X--;
+		}
 	}
 
 	if(Key == VK_DOWN) {
-		grid_Mine->Colors[m_col][m_row] = clBlack;
-		m_row++;
-		grid_Mine->Colors[m_col][m_row] = clBlue;
+		if(t_Current_X < 19) {
+			t_Current_X++;
+		}
 	}
+
+	if(Key == VK_SPACE) {
+        t_Current_X = 19;
+    }
+
+	t_Current_X_New = t_Current_X;
+	t_Current_Y_New = t_Current_Y;
+
+	m_Current_X = t_Current_X_New;
+	m_Current_Y = t_Current_Y_New;
+
+	m_MyView[t_Current_Y_Old][t_Current_X_Old] = 0;
+	m_MyView[t_Current_Y_New][t_Current_X_New] = 1;
+
+	RefreshMyGameView();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::RefreshMyGameView() {
+
+	BYTE t_Byte = 0;
+
+	for(int i = 0 ; i < 10 ; i++) {
+		for(int j = 0 ; j < 20 ; j++) {
+			t_Byte = m_MyView[i][j];
+			if(t_Byte == 1) {
+				grid_Mine->Colors[i][j] = clBlue;
+			} else {
+				grid_Mine->Colors[i][j] = clBlack;
+            }
+        }
+    }
+
 }
 //---------------------------------------------------------------------------
 

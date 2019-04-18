@@ -91,8 +91,17 @@ public:		// User declarations
 
 
 public: // START MJW
+	void __fastcall InitTetris();
 	int m_row;
 	int m_col;
+
+public: // Game System
+	BYTE m_MyView[10][20];
+	int m_Current_X;
+	int m_Current_Y;
+
+public: // Display
+	void __fastcall RefreshMyGameView();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TFormMain *FormMain;

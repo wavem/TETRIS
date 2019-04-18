@@ -12,6 +12,7 @@ object FormMain: TFormMain
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object __Main: TPanel
@@ -36,6 +37,8 @@ object FormMain: TFormMain
         Left = 0
         Top = 0
         Caption = 'Default'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object __MainPage_00_Default: TPanel
           Left = 0
           Top = 0
@@ -53,6 +56,8 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 1
         Caption = 'Login'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object __MainPage_01_Login: TPanel
           Left = 0
           Top = 0
@@ -245,6 +250,23 @@ object FormMain: TFormMain
             Lines.Strings = (
               'Memo1')
             TabOrder = 2
+          end
+          object btn_START: TButton
+            Left = 712
+            Top = 112
+            Width = 75
+            Height = 25
+            Caption = 'START'
+            TabOrder = 3
+            OnClick = btn_STARTClick
+          end
+          object Edit1: TEdit
+            Left = 704
+            Top = 85
+            Width = 121
+            Height = 21
+            TabOrder = 4
+            Text = 'Edit1'
           end
         end
       end

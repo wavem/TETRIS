@@ -81,9 +81,13 @@ __published:	// IDE-managed Components
 	TcxButton *btn_LogOut;
 	TAdvStringGrid *grid_Mine;
 	TMemo *Memo1;
+	TButton *btn_START;
+	TEdit *Edit1;
 	void __fastcall btn_GOClick(TObject *Sender);
 	void __fastcall btn_LogOutClick(TObject *Sender);
 	void __fastcall grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall btn_STARTClick(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations
@@ -99,9 +103,17 @@ public: // Game System
 	BYTE m_MyView[10][20];
 	int m_Current_X;
 	int m_Current_Y;
+	CCurrentBlock *m_CB;
+	bool DrawCurrentBlock(stPoint *_Point);
+
+public: // Control Information
+	bool GetBitStatus(BYTE _src, int _bit);
+	BYTE GetBlockStatus(BYTE _src);
 
 public: // Display
 	void __fastcall RefreshMyGameView();
+
+
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TFormMain *FormMain;

@@ -3,6 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
+#include "Define.h"
 #include "Main.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -70,7 +71,13 @@ TFormMain *FormMain;
 __fastcall TFormMain::TFormMain(TComponent* Owner)
 	: TForm(Owner)
 {
-	InitTetris();
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::FormCreate(TObject *Sender)
+{
+    InitTetris();
 	RefreshMyGameView();
 }
 //---------------------------------------------------------------------------
@@ -89,6 +96,8 @@ void __fastcall TFormMain::InitTetris() {
 
 	m_Current_X = 0;
 	m_Current_Y = 0;
+
+
 }
 //---------------------------------------------------------------------------
 
@@ -108,6 +117,20 @@ void __fastcall TFormMain::btn_LogOutClick(TObject *Sender)
 void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 
 {
+
+	if(!m_CB) return;
+
+	bool t_ret = false;
+	if(Key == VK_RIGHT) t_ret = m_CB->MoveRight();
+	if(Key == VK_LEFT) t_ret = m_CB->MoveLeft();
+	if(Key == VK_UP) t_ret = m_CB->RotateRight();
+	if(Key == VK_DOWN) t_ret = m_CB->MoveDown();
+	if(Key == VK_SPACE) t_ret = m_CB->Drop();
+
+	if(t_ret) DrawCurrentBlock(m_CB->Point);
+	return;
+
+
 	// Set Start Point (Temp)
 	int t_Current_X = m_Current_X;
 	int t_Current_Y = m_Current_Y;
@@ -164,7 +187,7 @@ void __fastcall TFormMain::RefreshMyGameView() {
 
 	for(int i = 0 ; i < 10 ; i++) {
 		for(int j = 0 ; j < 20 ; j++) {
-			t_Byte = m_MyView[i][j];
+			t_Byte = GetBlockStatus(m_MyView[i][j]);
 			if(t_Byte == 1) {
 				grid_Mine->Colors[i][j] = clBlue;
 			} else {
@@ -172,7 +195,51 @@ void __fastcall TFormMain::RefreshMyGameView() {
             }
         }
     }
+}
+//---------------------------------------------------------------------------
 
+bool TFormMain::GetBitStatus(BYTE _src, int _bit) {
+	if(_bit < 8 && _bit >= 0)	return (_src >> _bit) & 0x01;
+	return false;
+}
+//---------------------------------------------------------------------------
+
+BYTE TFormMain::GetBlockStatus(BYTE _src) {
+	return (_src & 0x3F);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
+{
+	int num = StrToInt(Edit1->Text);
+	m_CB = new CCurrentBlock;
+	if(m_CB->CreateNewBlock(num)) {
+		DrawCurrentBlock(m_CB->Point);
+    }
+}
+//---------------------------------------------------------------------------
+
+bool TFormMain::DrawCurrentBlock(stPoint *_Point) {
+
+	int t_X_Old = -1;
+	int t_Y_Old = -1;
+	int t_X_New = -1;
+	int t_Y_New = -1;
+
+	for(int i = 0 ; i < 4 ; i++) {
+		t_X_Old = _Point[i].X_old;
+		t_Y_Old = _Point[i].Y_old;
+
+		if(t_X_Old != -1 && t_Y_Old != -1) m_MyView[t_X_Old][t_Y_Old] = 0x00;
+	}
+
+	for(int i = 0 ; i < 4 ; i++) {
+	    t_X_New = _Point[i].X;
+		t_Y_New = _Point[i].Y;
+
+		m_MyView[t_X_New][t_Y_New] = 0x01;
+    }
+	RefreshMyGameView();
 }
 //---------------------------------------------------------------------------
 

@@ -37,8 +37,6 @@ object FormMain: TFormMain
         Left = 0
         Top = 0
         Caption = 'Default'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object __MainPage_00_Default: TPanel
           Left = 0
           Top = 0
@@ -56,8 +54,6 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 1
         Caption = 'Login'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object __MainPage_01_Login: TPanel
           Left = 0
           Top = 0
@@ -242,13 +238,12 @@ object FormMain: TFormMain
             SortSettings.DefaultFormat = ssAutomatic
             Version = '7.8.0.1'
           end
-          object Memo1: TMemo
+          object memo: TMemo
             Left = 818
-            Top = 609
+            Top = 120
             Width = 185
-            Height = 89
-            Lines.Strings = (
-              'Memo1')
+            Height = 578
+            ScrollBars = ssVertical
             TabOrder = 2
           end
           object btn_START: TButton

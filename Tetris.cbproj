@@ -111,6 +111,10 @@
         <BCC_PCHName_Clang>Tetris_1PCH.h</BCC_PCHName_Clang>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="common_func.cpp">
+            <DependentOn>common_func.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Define.cpp">
             <DependentOn>Define.h</DependentOn>
             <BuildOrder>3</BuildOrder>

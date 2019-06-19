@@ -80,7 +80,7 @@ __published:	// IDE-managed Components
 	TPanel *__MainPage_02_Main;
 	TcxButton *btn_LogOut;
 	TAdvStringGrid *grid_Mine;
-	TMemo *Memo1;
+	TMemo *memo;
 	TButton *btn_START;
 	TEdit *Edit1;
 	void __fastcall btn_GOClick(TObject *Sender);
@@ -105,14 +105,23 @@ public: // Game System
 	int m_Current_Y;
 	CCurrentBlock *m_CB;
 	bool DrawCurrentBlock(stPoint *_Point);
+	void SetCurrentBlock(BYTE *_src);
+	bool GetIsCurretBlock(BYTE *_src);
 
 public: // Control Information
-	bool GetBitStatus(BYTE _src, int _bit);
 	BYTE GetBlockStatus(BYTE _src);
 
 public: // Display
 	void __fastcall RefreshMyGameView();
 
+///***** NEW GAME SYSTEM *****///
+public:
+	C_BLOCK *m_Block;
+
+
+///***** ETC *****///
+public:
+	void __fastcall PrintMessage(UnicodeString _str);
 
 };
 //---------------------------------------------------------------------------

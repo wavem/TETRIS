@@ -177,9 +177,15 @@ void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 
 void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-
+	///***** PRE RETURN *****///
 	if(!m_Block) return;
 	bool t_ret = false;
+
+	///***** COMMON INIT *****///
+	srand((unsigned int)GetTickCount());
+	int num = rand() % 6;
+
+	///***** KEY MAP *****///
 	if(Key == VK_RIGHT) t_ret = m_Block->MoveRight();
 	if(Key == VK_LEFT)  t_ret = m_Block->MoveLeft();
 	if(Key == VK_UP)    t_ret = m_Block->RotateRight();
@@ -191,7 +197,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
-			m_Block = new C_BLOCK(1, m_MyView);
+			m_Block = new C_BLOCK(num, m_MyView);
         }
 	}
 	if(Key == VK_SPACE) {
@@ -199,8 +205,8 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
-			m_Block = new C_BLOCK(2, m_MyView);
-        }
+			m_Block = new C_BLOCK(num, m_MyView);
+		}
 	}
 
 	RefreshMyGameView();

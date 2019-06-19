@@ -34,19 +34,6 @@
 #define TYPE_STATUS_ROCK	8
 #define TYPE_ITEM_PLUS		9
 
-
-
-typedef struct St_Point {
-	bool RotateCenter;
-	int X;
-	int Y;
-	int X_new;
-	int Y_new;
-	int X_old;
-	int Y_old;
-} stPoint;
-//---------------------------------------------------------------------------
-
 typedef struct ST_POINT {
 	int X;
 	int Y;
@@ -60,9 +47,10 @@ private:
 	unsigned char (*p_My)[MAX_GRID_Y];
 
 public:
-	__fastcall C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]);
-	bool __fastcall CheckCreateSuccess();
-	bool __fastcall CheckIsComplete();
+	__fastcall C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool* _p_rst);
+	bool __fastcall CheckCanCreate();
+	bool __fastcall CheckLineClear();
+	void __fastcall ClearLine(int _Num);
 	unsigned char __fastcall GetBlockType(int _TYPE);
 
 

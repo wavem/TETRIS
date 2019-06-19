@@ -92,6 +92,7 @@ void __fastcall TFormMain::InitTetris() {
 		}
 	}
 	m_Block = NULL;
+	m_CreateSuccess = false;
 }
 //---------------------------------------------------------------------------
 
@@ -170,7 +171,7 @@ void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 {
 	memset(&(m_MyView[0][0]), 0, 200);
 	int num = StrToInt(Edit1->Text);
-	m_Block = new C_BLOCK(num, m_MyView);
+	m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 	RefreshMyGameView();
 }
 //---------------------------------------------------------------------------
@@ -183,7 +184,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 
 	///***** COMMON INIT *****///
 	srand((unsigned int)GetTickCount());
-	int num = rand() % 6;
+	int num = rand() % 7;
 
 	///***** KEY MAP *****///
 	if(Key == VK_RIGHT) t_ret = m_Block->MoveRight();
@@ -197,7 +198,12 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
-			m_Block = new C_BLOCK(num, m_MyView);
+			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+			if(!m_CreateSuccess) {
+				delete m_Block;
+				m_Block = NULL;
+				ShowMessage(L"GAME OVER");
+            }
         }
 	}
 	if(Key == VK_SPACE) {
@@ -205,7 +211,12 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
-			m_Block = new C_BLOCK(num, m_MyView);
+			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+			if(!m_CreateSuccess) {
+				delete m_Block;
+				m_Block = NULL;
+				ShowMessage(L"GAME OVER");
+            }
 		}
 	}
 

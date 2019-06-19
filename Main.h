@@ -103,6 +103,7 @@ public:
 	int m_col;
 	BYTE m_MyView[10][20];
 	C_BLOCK *m_Block;
+	bool m_CreateSuccess;
 
 public: // Control Information
 	BYTE GetBlockStatus(BYTE _src);

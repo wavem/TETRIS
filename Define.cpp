@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-__fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
+__fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool* _p_rst) {
 
 	///***** SAFE INIT MEMBER STRUCT *****///
 	for(int i = 0 ; i < 4 ; i++) {
@@ -37,6 +37,10 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			POINT[2].Y = 1;
 			POINT[3].X = 5;
 			POINT[3].Y = 1;
+			if(CheckCanCreate() == false) {
+				*_p_rst = false;
+				return;
+			}
 			p_My[4][0] = TYPE_BLOCK_O;
 			p_My[5][0] = TYPE_BLOCK_O;
 			p_My[4][1] = TYPE_BLOCK_O;
@@ -58,6 +62,10 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			POINT[2].Y = 0;
 			POINT[3].X = 6;
 			POINT[3].Y = 0;
+			if(CheckCanCreate() == false) {
+				*_p_rst = false;
+				return;
+			}
 			p_My[3][0] = TYPE_BLOCK_I;
 			p_My[4][0] = TYPE_BLOCK_I;
 			p_My[5][0] = TYPE_BLOCK_I;
@@ -81,6 +89,10 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			POINT[2].Y = 1;
 			POINT[3].X = 6;
 			POINT[3].Y = 1;
+			if(CheckCanCreate() == false) {
+				*_p_rst = false;
+				return;
+			}
 			p_My[5][0] = TYPE_BLOCK_T;
 			p_My[4][1] = TYPE_BLOCK_T;
 			p_My[5][1] = TYPE_BLOCK_T;
@@ -104,6 +116,10 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			POINT[2].Y = 0;
 			POINT[3].X = 6;
 			POINT[3].Y = 1;
+			if(CheckCanCreate() == false) {
+				*_p_rst = false;
+				return;
+			}
 			p_My[4][0] = TYPE_BLOCK_J;
 			p_My[5][0] = TYPE_BLOCK_J;
 			p_My[6][0] = TYPE_BLOCK_J;
@@ -127,6 +143,10 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			POINT[2].Y = 1;
 			POINT[3].X = 6;
 			POINT[3].Y = 1;
+			if(CheckCanCreate() == false) {
+				*_p_rst = false;
+				return;
+			}
 			p_My[4][0] = TYPE_BLOCK_L;
 			p_My[4][1] = TYPE_BLOCK_L;
 			p_My[5][1] = TYPE_BLOCK_L;
@@ -150,6 +170,10 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			POINT[2].Y = 1;
 			POINT[3].X = 6;
 			POINT[3].Y = 1;
+			if(CheckCanCreate() == false) {
+				*_p_rst = false;
+				return;
+			}
 			p_My[4][0] = TYPE_BLOCK_S;
 			p_My[5][0] = TYPE_BLOCK_S;
 			p_My[5][1] = TYPE_BLOCK_S;
@@ -173,6 +197,10 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			POINT[2].Y = 1;
 			POINT[3].X = 5;
 			POINT[3].Y = 1;
+			if(CheckCanCreate() == false) {
+				*_p_rst = false;
+				return;
+			}
 			p_My[5][0] = TYPE_BLOCK_Z;
 			p_My[6][0] = TYPE_BLOCK_Z;
 			p_My[4][1] = TYPE_BLOCK_Z;
@@ -191,6 +219,24 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			break;
 		}
 	}
+
+	*_p_rst = true;
+}
+//---------------------------------------------------------------------------
+
+bool __fastcall C_BLOCK::CheckCanCreate() {
+
+	int x = 0;
+	int y = 0;
+
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		if(p_My[x][y]) {
+			return false;
+		}
+	}
+	return true;
 }
 //---------------------------------------------------------------------------
 
@@ -320,6 +366,7 @@ bool __fastcall C_BLOCK::MoveDown() {
 		y = POINT[i].Y;
 		if(y == 19) {
 			Complete();
+			CheckLineClear();
 			return true;
 		}
 
@@ -329,6 +376,7 @@ bool __fastcall C_BLOCK::MoveDown() {
 	}
 	if(t_CheckCnt != 4) {
 		Complete();
+		CheckLineClear();
 		return true;
 	}
 
@@ -358,7 +406,6 @@ bool __fastcall C_BLOCK::Drop() {
 
 	for(int i = 0 ; i < 20 ; i++) {
 		if(MoveDown()) {
-			Complete();
 			FormMain->PrintMessage(L"DROP !");
 			return true;
 		}
@@ -530,5 +577,33 @@ bool __fastcall C_BLOCK::Complete() {
 		p_My[x][y] = GetBlockType(Type);
 	}
 	return true;
+}
+//---------------------------------------------------------------------------
+
+bool __fastcall C_BLOCK::CheckLineClear() {
+
+	int t_CheckCnt = 0;
+	for(int y = 0 ; y < 20 ; y++) {
+		for(int x = 0 ; x < 10 ; x++) {
+			if(p_My[x][y]) t_CheckCnt++;
+		}
+		if(t_CheckCnt == 10) {
+			ClearLine(y);
+		}
+		t_CheckCnt = 0;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall C_BLOCK::ClearLine(int _Num) {
+	for(int x = 0 ; x < 10 ; x++) {
+		p_My[x][_Num] = 0;
+	}
+
+	for(int y = _Num - 1 ; y >= 0 ; y--) {
+		for(int x = 0 ; x < 10 ; x++) {
+			p_My[x][y + 1] = p_My[x][y];
+		}
+    }
 }
 //---------------------------------------------------------------------------

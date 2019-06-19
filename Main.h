@@ -94,29 +94,21 @@ public:		// User declarations
 	__fastcall TFormMain(TComponent* Owner);
 
 
-public: // START MJW
+///***** START MJW *****///
+
+///***** PROPERTY *****///
+public:
 	void __fastcall InitTetris();
 	int m_row;
 	int m_col;
-
-public: // Game System
 	BYTE m_MyView[10][20];
-	int m_Current_X;
-	int m_Current_Y;
-	CCurrentBlock *m_CB;
-	bool DrawCurrentBlock(stPoint *_Point);
-	void SetCurrentBlock(BYTE *_src);
-	bool GetIsCurretBlock(BYTE *_src);
+	C_BLOCK *m_Block;
 
 public: // Control Information
 	BYTE GetBlockStatus(BYTE _src);
 
 public: // Display
 	void __fastcall RefreshMyGameView();
-
-///***** NEW GAME SYSTEM *****///
-public:
-	C_BLOCK *m_Block;
 
 
 ///***** ETC *****///

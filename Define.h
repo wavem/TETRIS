@@ -22,7 +22,6 @@
 #define DIRECTION_D 4
 
 
-
 typedef struct St_Point {
 	bool RotateCenter;
 	int X;
@@ -32,32 +31,6 @@ typedef struct St_Point {
 	int X_old;
 	int Y_old;
 } stPoint;
-//---------------------------------------------------------------------------
-
-class CCurrentBlock {
-private:
-	//stPoint Point[4];
-	int DropSpeed;
-	bool CanMoveFlag;
-
-public:
-	stPoint Point[4];
-	bool bIsNew;
-	unsigned char (*mp_MyView)[20];
-
-	__fastcall CCurrentBlock();
-	void __fastcall Init();
-	bool __fastcall CreateNewBlock(int _Type);
-
-	bool __fastcall MoveRight();
-	bool __fastcall MoveLeft();
-	bool __fastcall MoveDown();
-	bool __fastcall Drop();
-	bool __fastcall RotateRight();
-	bool __fastcall RotateLeft();
-	bool __fastcall Complete();
-
-};
 //---------------------------------------------------------------------------
 
 typedef struct ST_POINT {

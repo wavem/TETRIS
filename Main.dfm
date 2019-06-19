@@ -37,8 +37,6 @@ object FormMain: TFormMain
         Left = 0
         Top = 0
         Caption = 'Default'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object __MainPage_00_Default: TPanel
           Left = 0
           Top = 0
@@ -56,8 +54,6 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 1
         Caption = 'Login'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object __MainPage_01_Login: TPanel
           Left = 0
           Top = 0
@@ -194,12 +190,14 @@ object FormMain: TFormMain
             FixedFont.Name = 'Tahoma'
             FixedFont.Style = [fsBold]
             FloatFormat = '%.2f'
+            HideFocusRect = True
             HoverButtons.Buttons = <>
             HoverButtons.Position = hbLeftFromColumnLeft
             HTMLSettings.ImageFolder = 'images'
             HTMLSettings.ImageBaseName = 'img'
             IntelliZoom = False
             Look = glSoft
+            MouseActions.AutoSizeColOnDblClick = False
             PrintSettings.DateFormat = 'dd/mm/yyyy'
             PrintSettings.Font.Charset = DEFAULT_CHARSET
             PrintSettings.Font.Color = clWindowText
@@ -256,6 +254,12 @@ object FormMain: TFormMain
             Width = 75
             Height = 25
             Caption = 'START'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
             TabOrder = 3
             OnClick = btn_STARTClick
           end

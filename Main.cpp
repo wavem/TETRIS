@@ -95,6 +95,54 @@ void __fastcall TFormMain::InitTetris() {
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TFormMain::RefreshMyGameView() {
+	BYTE t_Byte = 0;
+	for(int i = 0 ; i < 10 ; i++) {
+		for(int j = 0 ; j < 20 ; j++) {
+			//t_Byte = GetBlockStatus(m_MyView[i][j]);
+			t_Byte = GetBlockData(m_MyView[i][j]);
+
+			switch(t_Byte) {
+				case TYPE_BLOCK_O:
+					grid_Mine->Colors[i][j] = clYellow;
+					break;
+				case TYPE_BLOCK_I:
+					grid_Mine->Colors[i][j] = clBlue;
+					break;
+				case TYPE_BLOCK_T:
+					grid_Mine->Colors[i][j] = clPurple;
+					break;
+				case TYPE_BLOCK_J:
+					grid_Mine->Colors[i][j] = clGreen;
+					break;
+				case TYPE_BLOCK_L:
+					grid_Mine->Colors[i][j] = clMenuHighlight;
+					break;
+				case TYPE_BLOCK_S:
+					grid_Mine->Colors[i][j] = clRed;
+					break;
+				case TYPE_BLOCK_Z:
+					grid_Mine->Colors[i][j] = clFuchsia;
+					break;
+				default:
+					grid_Mine->Colors[i][j] = clBlack;
+					break;
+			}
+
+#if 0
+			if(t_Byte == 0x80) {
+				grid_Mine->Colors[i][j] = clBlue;
+			} else if(t_Byte == 0x30) {
+				grid_Mine->Colors[i][j] = clYellow;
+			} else {
+				grid_Mine->Colors[i][j] = clBlack;
+			}
+#endif
+        }
+    }
+}
+//---------------------------------------------------------------------------
+
 void __fastcall TFormMain::btn_GOClick(TObject *Sender)
 {
 	Notebook_Main->PageIndex = 2; // MAIN GAME PAGE
@@ -107,36 +155,8 @@ void __fastcall TFormMain::btn_LogOutClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-
-	if(!m_Block) return;
-
-	bool t_ret = false;
-	if(Key == VK_RIGHT) t_ret = m_Block->MoveRight();
-	if(Key == VK_LEFT)  t_ret = m_Block->MoveLeft();
-	if(Key == VK_DOWN)  t_ret = m_Block->MoveDown();
-	if(Key == VK_SPACE) t_ret = m_Block->Drop();
-	if(Key == VK_UP)    t_ret = m_Block->RotateRight();
-	if(Key == 0x43)    t_ret = m_Block->RotateRight(); // 0x43 : 'C'
-	if(Key == 0x5A)    t_ret = m_Block->RotateLeft(); // 0x5A : 'Z'
-
-	RefreshMyGameView();
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TFormMain::RefreshMyGameView() {
-	BYTE t_Byte = 0;
-	for(int i = 0 ; i < 10 ; i++) {
-		for(int j = 0 ; j < 20 ; j++) {
-			t_Byte = GetBlockStatus(m_MyView[i][j]);
-			if(t_Byte == 0x80) {
-				grid_Mine->Colors[i][j] = clBlue;
-			} else {
-				grid_Mine->Colors[i][j] = clBlack;
-            }
-        }
-    }
+void __fastcall TFormMain::PrintMessage(UnicodeString _str) {
+	memo->Lines->Add(_str);
 }
 //---------------------------------------------------------------------------
 
@@ -152,12 +172,37 @@ void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 	int num = StrToInt(Edit1->Text);
 	m_Block = new C_BLOCK(num, m_MyView);
 	RefreshMyGameView();
-	//delete m_Block;																							 `
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TFormMain::PrintMessage(UnicodeString _str) {
-	memo->Lines->Add(_str);
+void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+
+	if(!m_Block) return;
+	bool t_ret = false;
+	if(Key == VK_RIGHT) t_ret = m_Block->MoveRight();
+	if(Key == VK_LEFT)  t_ret = m_Block->MoveLeft();
+	if(Key == VK_UP)    t_ret = m_Block->RotateRight();
+	if(Key == 0x43)    t_ret = m_Block->RotateRight(); // 0x43 : 'C'
+	if(Key == 0x5A)    t_ret = m_Block->RotateLeft(); // 0x5A : 'Z'
+
+	if(Key == VK_DOWN) {
+		t_ret = m_Block->MoveDown();
+		if(t_ret) {
+			delete m_Block;
+			m_Block = NULL;
+			m_Block = new C_BLOCK(1, m_MyView);
+        }
+	}
+	if(Key == VK_SPACE) {
+		t_ret = m_Block->Drop();
+		if(t_ret) {
+			delete m_Block;
+			m_Block = NULL;
+			m_Block = new C_BLOCK(2, m_MyView);
+        }
+	}
+
+	RefreshMyGameView();
 }
 //---------------------------------------------------------------------------
-

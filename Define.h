@@ -21,6 +21,20 @@
 #define DIRECTION_R 3
 #define DIRECTION_D 4
 
+///***** BLOCK INFORMATION TABLE *****///
+
+#define TYPE_STATUS_NONE 	0
+#define TYPE_BLOCK_O 		1
+#define TYPE_BLOCK_I 		2
+#define TYPE_BLOCK_T 		3
+#define TYPE_BLOCK_J 		4
+#define TYPE_BLOCK_L 		5
+#define TYPE_BLOCK_S 		6
+#define TYPE_BLOCK_Z 		7
+#define TYPE_STATUS_ROCK	8
+#define TYPE_ITEM_PLUS		9
+
+
 
 typedef struct St_Point {
 	bool RotateCenter;
@@ -49,6 +63,7 @@ public:
 	__fastcall C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]);
 	bool __fastcall CheckCreateSuccess();
 	bool __fastcall CheckIsComplete();
+	unsigned char __fastcall GetBlockType(int _TYPE);
 
 
 	///***** PROPERTY *****///

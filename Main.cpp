@@ -124,6 +124,10 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 	if(Key == VK_RIGHT) t_ret = m_Block->MoveRight();
 	if(Key == VK_LEFT)  t_ret = m_Block->MoveLeft();
 	if(Key == VK_DOWN)  t_ret = m_Block->MoveDown();
+	if(Key == VK_SPACE) t_ret = m_Block->Drop();
+	if(Key == VK_UP)    t_ret = m_Block->RotateRight();
+	if(Key == 0x43)    t_ret = m_Block->RotateRight(); // 0x43 : 'C'
+	if(Key == 0x5A)    t_ret = m_Block->RotateLeft(); // 0x5A : 'Z'
 
 	RefreshMyGameView();
 

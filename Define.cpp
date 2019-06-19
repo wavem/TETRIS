@@ -321,7 +321,7 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			p_My[5][0] = 0x80;
 			p_My[6][0] = 0x80;
 
-			POINT[3].R = true;
+			POINT[2].R = true;
 			break;
 		}
 
@@ -340,7 +340,7 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			p_My[5][1] = 0x80;
 			p_My[6][1] = 0x80;
 
-			POINT[3].R = true;
+			POINT[2].R = true;
 			break;
 		}
 
@@ -359,7 +359,7 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			p_My[6][0] = 0x80;
 			p_My[6][1] = 0x80;
 
-			POINT[2].R = true;
+			POINT[1].R = true;
 			break;
 		}
 
@@ -378,7 +378,7 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			p_My[5][1] = 0x80;
 			p_My[6][1] = 0x80;
 
-			POINT[3].R = true;
+			POINT[2].R = true;
 			break;
 		}
 
@@ -397,7 +397,7 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			p_My[5][1] = 0x80;
 			p_My[6][1] = 0x80;
 
-			POINT[3].R = true;
+			POINT[2].R = true;
 			break;
 		}
 
@@ -416,7 +416,7 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 			p_My[4][1] = 0x80;
 			p_My[5][1] = 0x80;
 
-			POINT[4].R = true;
+			POINT[3].R = true;
 			break;
 		}
 
@@ -431,29 +431,14 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]) {
 bool __fastcall C_BLOCK::MoveRight() {
 	///***** COMMON INIT *****///
 	int t_CheckCnt = 0;
-	st_POINT t_Point[4] = { };
-
-	///***** FIND CURRENT BLOCK *****///
-	for(int x = 0 ; x < 10 ; x++) {
-		if(t_CheckCnt == 4) break;
-		for(int y = 0 ; y < 20 ; y++) {
-			if(GetBitStatus(p_My[x][y], 7)) {
-				t_Point[t_CheckCnt].X = x;
-				t_Point[t_CheckCnt].Y = y;
-				++t_CheckCnt;
-			}
-			if(t_CheckCnt == 4) break;
-		}
-	}
-	if(t_CheckCnt != 4) return false;
 
 	///***** CHECK IS POSSIBLE MOVE *****///
 	t_CheckCnt = 0;
 	int x = 0;
 	int y = 0;
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
+		x = POINT[i].X;
+		y = POINT[i].Y;
 		if(x == 9) return false;
 
 		if(GetBitStatus(p_My[x + 1][y], 7) || p_My[x + 1][y] == 0 || GetBitStatus(p_My[x + 1][y], 6)) {
@@ -464,16 +449,18 @@ bool __fastcall C_BLOCK::MoveRight() {
 
 	///***** DELETE CURRENT BLOCK *****///
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
+		x = POINT[i].X;
+		y = POINT[i].Y;
 		p_My[x][y] = 0;
 	}
 
 	///***** RESET CURRENT BLOCK *****///
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
+		x = POINT[i].X;
+		y = POINT[i].Y;
 		p_My[x + 1][y] = 0x80;
+		POINT[i].X = x + 1;
+		POINT[i].Y = y;
 	}
 
 	FormMain->PrintMessage(L"MOVE RIGHT !");
@@ -483,29 +470,14 @@ bool __fastcall C_BLOCK::MoveRight() {
 bool __fastcall C_BLOCK::MoveLeft() {
 	///***** COMMON INIT *****///
 	int t_CheckCnt = 0;
-	st_POINT t_Point[4] = { };
-
-	///***** FIND CURRENT BLOCK *****///
-	for(int x = 0 ; x < 10 ; x++) {
-		if(t_CheckCnt == 4) break;
-		for(int y = 0 ; y < 20 ; y++) {
-			if(GetBitStatus(p_My[x][y], 7)) {
-				t_Point[t_CheckCnt].X = x;
-				t_Point[t_CheckCnt].Y = y;
-				++t_CheckCnt;
-			}
-			if(t_CheckCnt == 4) break;
-		}
-	}
-	if(t_CheckCnt != 4) return false;
 
 	///***** CHECK IS POSSIBLE MOVE *****///
 	t_CheckCnt = 0;
 	int x = 0;
 	int y = 0;
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
+		x = POINT[i].X;
+		y = POINT[i].Y;
 		if(x == 0) return false;
 
 		if(GetBitStatus(p_My[x - 1][y], 7) || p_My[x - 1][y] == 0 || GetBitStatus(p_My[x - 1][y], 6)) {
@@ -516,16 +488,18 @@ bool __fastcall C_BLOCK::MoveLeft() {
 
 	///***** DELETE CURRENT BLOCK *****///
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
+		x = POINT[i].X;
+		y = POINT[i].Y;
 		p_My[x][y] = 0;
 	}
 
 	///***** RESET CURRENT BLOCK *****///
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
+		x = POINT[i].X;
+		y = POINT[i].Y;
 		p_My[x - 1][y] = 0x80;
+		POINT[i].X = x - 1;
+		POINT[i].Y = y;
 	}
 
 	FormMain->PrintMessage(L"MOVE LEFT !");
@@ -533,6 +507,45 @@ bool __fastcall C_BLOCK::MoveLeft() {
 //---------------------------------------------------------------------------
 
 bool __fastcall C_BLOCK::MoveDown() {
+	///***** COMMON INIT *****///
+	int t_CheckCnt = 0;
+
+	///***** CHECK IS POSSIBLE MOVE *****///
+	t_CheckCnt = 0;
+	int x = 0;
+	int y = 0;
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		if(y == 19) return false;
+
+		if(GetBitStatus(p_My[x][y + 1], 7) || p_My[x][y + 1] == 0 || GetBitStatus(p_My[x][y + 1], 6)) {
+			++t_CheckCnt;
+		}
+	}
+	if(t_CheckCnt != 4) return false;
+
+	///***** DELETE CURRENT BLOCK *****///
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		p_My[x][y] = 0;
+	}
+
+	///***** RESET CURRENT BLOCK *****///
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		p_My[x][y + 1] = 0x80;
+		POINT[i].X = x;
+		POINT[i].Y = y + 1;
+	}
+
+	FormMain->PrintMessage(L"MOVE DOWN !");
+}
+//---------------------------------------------------------------------------
+
+bool __fastcall C_BLOCK::Drop() {
 	///***** COMMON INIT *****///
 	int t_CheckCnt = 0;
 	st_POINT t_Point[4] = { };
@@ -551,16 +564,60 @@ bool __fastcall C_BLOCK::MoveDown() {
 	}
 	if(t_CheckCnt != 4) return false;
 
-	///***** CHECK IS POSSIBLE MOVE *****///
+	FormMain->PrintMessage(L"DROP !");
+}
+//---------------------------------------------------------------------------
+
+bool __fastcall C_BLOCK::RotateRight() {
+	///***** PRE RETURN IF BLOCK IS O *****///
+	if(Type == BLOCK_O) {
+        FormMain->PrintMessage(L"BLOCK O !");
+		return false;
+	}
+
+	///***** COMMON INIT *****///
+	int t_CheckCnt = 0;
+	st_POINT t_NewPoint[4] = { };
+
+	///***** GET ROTATION POINT *****///
+	int RX = 0; // R : Rotation Point
+	int RY = 0;
+	for(int i = 0 ; i < 4 ; i++) {
+		if(POINT[i].R) {
+			RX = POINT[i].X;
+			RY = POINT[i].Y;
+			break;
+		}
+	}
+
+	///***** CHECK IS POSSIBLE ROTATE *****///
 	t_CheckCnt = 0;
 	int x = 0;
 	int y = 0;
+	int GX = 0; // G : Gap x between RX
+	int GY = 0; // G : Gap y between RY
+	int NX = 0; // N : New x coordinate
+	int NY = 0; // N : New y coordinate
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
-		if(y == 19) return false;
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		if(x == RX && y == RY) {
+			t_NewPoint[t_CheckCnt].X = x;
+			t_NewPoint[t_CheckCnt].Y = y;
+			++t_CheckCnt;
+			continue; // Rotation Point : No Neccessary Rotate
+		}
 
-		if(GetBitStatus(p_My[x][y + 1], 7) || p_My[x][y + 1] == 0 || GetBitStatus(p_My[x][y + 1], 6)) {
+		GX = RX - x;
+		GY = RY - y;
+		NX = RX + GY;
+		NY = RY - GX;
+
+		if(NX > 9 || NX < 0 || NY < 0 || NY > 19) return false;
+
+		if(GetBitStatus(p_My[NX][NY], 7) || p_My[NX][NY] == 0 || GetBitStatus(p_My[NX][NY], 6)) {
+			t_NewPoint[t_CheckCnt].X = NX;
+			t_NewPoint[t_CheckCnt].Y = NY;
 			++t_CheckCnt;
 		}
 	}
@@ -568,18 +625,95 @@ bool __fastcall C_BLOCK::MoveDown() {
 
 	///***** DELETE CURRENT BLOCK *****///
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
+		x = POINT[i].X;
+		y = POINT[i].Y;
 		p_My[x][y] = 0;
 	}
 
 	///***** RESET CURRENT BLOCK *****///
 	for(int i = 0 ; i < 4 ; i++) {
-		x = t_Point[i].X;
-		y = t_Point[i].Y;
-		p_My[x][y + 1] = 0x80;
+		x = t_NewPoint[i].X;
+		y = t_NewPoint[i].Y;
+		p_My[x][y] = 0x80;
+		POINT[i].X = x;
+		POINT[i].Y = y;
 	}
 
-	FormMain->PrintMessage(L"MOVE DOWN !");
+	FormMain->PrintMessage(L"ROTATE RIGHT !");
+}
+//---------------------------------------------------------------------------
+
+bool __fastcall C_BLOCK::RotateLeft() {
+	///***** PRE RETURN IF BLOCK IS O *****///
+	if(Type == BLOCK_O) {
+        FormMain->PrintMessage(L"BLOCK O !");
+		return false;
+	}
+
+	///***** COMMON INIT *****///
+	int t_CheckCnt = 0;
+	st_POINT t_NewPoint[4] = { };
+
+	///***** GET ROTATION POINT *****///
+	int RX = 0; // R : Rotation Point
+	int RY = 0;
+	for(int i = 0 ; i < 4 ; i++) {
+		if(POINT[i].R) {
+			RX = POINT[i].X;
+			RY = POINT[i].Y;
+			break;
+		}
+	}
+
+	///***** CHECK IS POSSIBLE ROTATE *****///
+	t_CheckCnt = 0;
+	int x = 0;
+	int y = 0;
+	int GX = 0; // G : Gap x between RX
+	int GY = 0; // G : Gap y between RY
+	int NX = 0; // N : New x coordinate
+	int NY = 0; // N : New y coordinate
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		if(x == RX && y == RY) {
+			t_NewPoint[t_CheckCnt].X = x;
+			t_NewPoint[t_CheckCnt].Y = y;
+			++t_CheckCnt;
+			continue; // Rotation Point : No Neccessary Rotate
+		}
+
+		GX = RX - x;
+		GY = RY - y;
+		NX = RX - GY;
+		NY = RY + GX;
+
+		if(NX > 9 || NX < 0 || NY < 0 || NY > 19) return false;
+
+		if(GetBitStatus(p_My[NX][NY], 7) || p_My[NX][NY] == 0 || GetBitStatus(p_My[NX][NY], 6)) {
+			t_NewPoint[t_CheckCnt].X = NX;
+			t_NewPoint[t_CheckCnt].Y = NY;
+			++t_CheckCnt;
+		}
+	}
+	if(t_CheckCnt != 4) return false;
+
+	///***** DELETE CURRENT BLOCK *****///
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		p_My[x][y] = 0;
+	}
+
+	///***** RESET CURRENT BLOCK *****///
+	for(int i = 0 ; i < 4 ; i++) {
+		x = t_NewPoint[i].X;
+		y = t_NewPoint[i].Y;
+		p_My[x][y] = 0x80;
+		POINT[i].X = x;
+		POINT[i].Y = y;
+	}
+
+	FormMain->PrintMessage(L"ROTATE RIGHT !");
 }
 //---------------------------------------------------------------------------

@@ -75,6 +75,7 @@ private:
 public:
 	__fastcall C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y]);
 	bool __fastcall CheckCreateSuccess();
+	bool __fastcall CheckIsComplete();
 
 
 	///***** PROPERTY *****///

@@ -37,6 +37,8 @@ object FormMain: TFormMain
         Left = 0
         Top = 0
         Caption = 'Default'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object __MainPage_00_Default: TPanel
           Left = 0
           Top = 0
@@ -54,6 +56,8 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 1
         Caption = 'Login'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object __MainPage_01_Login: TPanel
           Left = 0
           Top = 0

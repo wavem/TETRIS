@@ -6,7 +6,7 @@
 #endif
 
 #define MAX_GRID_X 10
-#define MAX_GRID_Y 22
+#define MAX_GRID_Y 23
 
 #define BLOCK_O 0
 #define BLOCK_I 1

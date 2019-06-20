@@ -3,7 +3,7 @@ object FormMain: TFormMain
   Top = 0
   BorderStyle = bsSingle
   Caption = 'Tetris'
-  ClientHeight = 739
+  ClientHeight = 752
   ClientWidth = 1018
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,34 +20,38 @@ object FormMain: TFormMain
     Left = 0
     Top = 0
     Width = 1018
-    Height = 739
+    Height = 752
     Align = alClient
     BevelOuter = bvNone
     Color = clGray
     ParentBackground = False
     TabOrder = 0
+    ExplicitHeight = 739
     object Notebook_Main: TNotebook
       Left = 0
       Top = 0
       Width = 1018
-      Height = 739
+      Height = 752
       Align = alClient
       PageIndex = 2
       TabOrder = 0
+      ExplicitHeight = 739
       object TPage
         Left = 0
         Top = 0
         Caption = 'Default'
+        ExplicitHeight = 739
         object __MainPage_00_Default: TPanel
           Left = 0
           Top = 0
           Width = 1018
-          Height = 739
+          Height = 752
           Align = alClient
           BevelOuter = bvNone
           Color = clGray
           ParentBackground = False
           TabOrder = 0
+          ExplicitHeight = 739
         end
       end
       object TPage
@@ -55,16 +59,18 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 1
         Caption = 'Login'
+        ExplicitHeight = 739
         object __MainPage_01_Login: TPanel
           Left = 0
           Top = 0
           Width = 1018
-          Height = 739
+          Height = 752
           Align = alClient
           BevelOuter = bvNone
           Color = clCream
           ParentBackground = False
           TabOrder = 0
+          ExplicitHeight = 739
           object btn_GO: TAdvGlassButton
             Left = 464
             Top = 440
@@ -94,11 +100,12 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 2
         Caption = 'Main_Tetris'
+        ExplicitHeight = 739
         object __MainPage_02_Main: TPanel
           Left = 0
           Top = 0
           Width = 1018
-          Height = 739
+          Height = 752
           Align = alClient
           BevelOuter = bvNone
           Color = cl3DDkShadow
@@ -106,6 +113,7 @@ object FormMain: TFormMain
           ParentBackground = False
           ParentDoubleBuffered = False
           TabOrder = 0
+          ExplicitHeight = 739
           object btn_LogOut: TcxButton
             Left = 928
             Top = 704
@@ -116,10 +124,10 @@ object FormMain: TFormMain
             OnClick = btn_LogOutClick
           end
           object grid_Mine: TAdvStringGrid
-            Left = 320
-            Top = 26
+            Left = 336
+            Top = 12
             Width = 324
-            Height = 708
+            Height = 740
             Cursor = crDefault
             TabStop = False
             BevelInner = bvNone
@@ -130,7 +138,7 @@ object FormMain: TFormMain
             DefaultRowHeight = 32
             DrawingStyle = gdsClassic
             FixedCols = 0
-            RowCount = 22
+            RowCount = 23
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
@@ -274,10 +282,10 @@ object FormMain: TFormMain
             Text = 'Edit1'
           end
           object pn_Cover: TPanel
-            Left = 320
-            Top = 27
+            Left = 336
+            Top = 12
             Width = 324
-            Height = 64
+            Height = 85
             BevelOuter = bvNone
             Color = cl3DDkShadow
             ParentBackground = False

@@ -364,7 +364,7 @@ bool __fastcall C_BLOCK::MoveDown() {
 	for(int i = 0 ; i < 4 ; i++) {
 		x = POINT[i].X;
 		y = POINT[i].Y;
-		if(y == 21) {
+		if(y == MAX_GRID_Y - 1) {
 			Complete();
 			CheckLineClear();
 			return true;

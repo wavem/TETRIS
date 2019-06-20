@@ -199,12 +199,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 			delete m_Block;
 			m_Block = NULL;
 			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
-			if(!m_CreateSuccess) {
-				delete m_Block;
-				m_Block = NULL;
-				ShowMessage(L"GAME OVER");
-            }
-        }
+		}
 	}
 	if(Key == VK_SPACE) {
 		t_ret = m_Block->Drop();
@@ -212,14 +207,15 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 			delete m_Block;
 			m_Block = NULL;
 			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
-			if(!m_CreateSuccess) {
-				delete m_Block;
-				m_Block = NULL;
-				ShowMessage(L"GAME OVER");
-            }
 		}
 	}
 
 	RefreshMyGameView();
+
+	if(!m_CreateSuccess) {
+		delete m_Block;
+		m_Block = NULL;
+		ShowMessage(L"GAME OVER");
+	}
 }
 //---------------------------------------------------------------------------

@@ -86,8 +86,8 @@ void __fastcall TFormMain::FormCreate(TObject *Sender)
 void __fastcall TFormMain::InitTetris() {
 	Notebook_Main->PageIndex = 1; // Login
 
-	for(int i = 0 ; i < 10 ; i++) {
-		for(int j = 0 ; j < 20 ; j++) {
+	for(int i = 0 ; i < MAX_GRID_X ; i++) {
+		for(int j = 0 ; j < MAX_GRID_Y ; j++) {
 			m_MyView[i][j] = 0;
 		}
 	}
@@ -98,8 +98,8 @@ void __fastcall TFormMain::InitTetris() {
 
 void __fastcall TFormMain::RefreshMyGameView() {
 	BYTE t_Byte = 0;
-	for(int i = 0 ; i < 10 ; i++) {
-		for(int j = 0 ; j < 20 ; j++) {
+	for(int i = 0 ; i < MAX_GRID_X ; i++) {
+		for(int j = 0 ; j < MAX_GRID_Y ; j++) {
 			//t_Byte = GetBlockStatus(m_MyView[i][j]);
 			t_Byte = GetBlockData(m_MyView[i][j]);
 
@@ -169,7 +169,7 @@ BYTE TFormMain::GetBlockStatus(BYTE _src) {
 
 void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 {
-	memset(&(m_MyView[0][0]), 0, 200);
+	memset(&(m_MyView[0][0]), 0, MAX_GRID_X * MAX_GRID_Y);
 	int num = StrToInt(Edit1->Text);
 	m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 	RefreshMyGameView();

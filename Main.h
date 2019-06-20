@@ -83,6 +83,7 @@ __published:	// IDE-managed Components
 	TMemo *memo;
 	TButton *btn_START;
 	TEdit *Edit1;
+	TPanel *pn_Cover;
 	void __fastcall btn_GOClick(TObject *Sender);
 	void __fastcall btn_LogOutClick(TObject *Sender);
 	void __fastcall grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -101,7 +102,7 @@ public:
 	void __fastcall InitTetris();
 	int m_row;
 	int m_col;
-	BYTE m_MyView[10][20];
+	BYTE m_MyView[MAX_GRID_X][MAX_GRID_Y];
 	C_BLOCK *m_Block;
 	bool m_CreateSuccess;
 

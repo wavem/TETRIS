@@ -6,7 +6,7 @@
 #endif
 
 #define MAX_GRID_X 10
-#define MAX_GRID_Y 20
+#define MAX_GRID_Y 22
 
 #define BLOCK_O 0
 #define BLOCK_I 1
@@ -48,6 +48,9 @@ private:
 
 public:
 	__fastcall C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool* _p_rst);
+
+	///***** INNER ROUTINE *****///
+	bool __fastcall Complete();
 	bool __fastcall CheckCanCreate();
 	bool __fastcall CheckLineClear();
 	void __fastcall ClearLine(int _Num);
@@ -66,6 +69,5 @@ public:
 	bool __fastcall Drop();
 	bool __fastcall RotateRight();
 	bool __fastcall RotateLeft();
-	bool __fastcall Complete();
 };
 //---------------------------------------------------------------------------

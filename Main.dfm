@@ -12,6 +12,7 @@ object FormMain: TFormMain
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -100,7 +101,7 @@ object FormMain: TFormMain
           Height = 739
           Align = alClient
           BevelOuter = bvNone
-          Color = clSilver
+          Color = cl3DDkShadow
           DoubleBuffered = True
           ParentBackground = False
           ParentDoubleBuffered = False
@@ -116,9 +117,9 @@ object FormMain: TFormMain
           end
           object grid_Mine: TAdvStringGrid
             Left = 320
-            Top = 86
+            Top = 26
             Width = 324
-            Height = 644
+            Height = 708
             Cursor = crDefault
             TabStop = False
             BevelInner = bvNone
@@ -129,7 +130,7 @@ object FormMain: TFormMain
             DefaultRowHeight = 32
             DrawingStyle = gdsClassic
             FixedCols = 0
-            RowCount = 20
+            RowCount = 22
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
@@ -237,6 +238,7 @@ object FormMain: TFormMain
             SelectionColor = clHighlight
             SelectionTextColor = clHighlightText
             ShowSelection = False
+            ShowDesignHelper = False
             SortSettings.DefaultFormat = ssAutomatic
             Version = '7.8.0.1'
           end
@@ -270,6 +272,16 @@ object FormMain: TFormMain
             Height = 21
             TabOrder = 4
             Text = 'Edit1'
+          end
+          object pn_Cover: TPanel
+            Left = 320
+            Top = 27
+            Width = 324
+            Height = 64
+            BevelOuter = bvNone
+            Color = cl3DDkShadow
+            ParentBackground = False
+            TabOrder = 5
           end
         end
       end

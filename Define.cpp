@@ -30,50 +30,50 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 		case BLOCK_O:
 		{
 			POINT[0].X = 4;
-			POINT[0].Y = 0;
+			POINT[0].Y = 2;
 			POINT[1].X = 5;
-			POINT[1].Y = 0;
+			POINT[1].Y = 2;
 			POINT[2].X = 4;
-			POINT[2].Y = 1;
+			POINT[2].Y = 3;
 			POINT[3].X = 5;
-			POINT[3].Y = 1;
+			POINT[3].Y = 3;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
 				return;
 			}
-			p_My[4][0] = TYPE_BLOCK_O;
-			p_My[5][0] = TYPE_BLOCK_O;
-			p_My[4][1] = TYPE_BLOCK_O;
-			p_My[5][1] = TYPE_BLOCK_O;
-			p_My[4][0] = _BitSetting(p_My[4][0], 7, true);
-			p_My[5][0] = _BitSetting(p_My[5][0], 7, true);
-			p_My[4][1] = _BitSetting(p_My[4][1], 7, true);
-			p_My[5][1] = _BitSetting(p_My[5][1], 7, true);
+			p_My[4][2] = TYPE_BLOCK_O;
+			p_My[5][2] = TYPE_BLOCK_O;
+			p_My[4][3] = TYPE_BLOCK_O;
+			p_My[5][3] = TYPE_BLOCK_O;
+			p_My[4][2] = _BitSetting(p_My[4][2], 7, true);
+			p_My[5][2] = _BitSetting(p_My[5][2], 7, true);
+			p_My[4][3] = _BitSetting(p_My[4][3], 7, true);
+			p_My[5][3] = _BitSetting(p_My[5][3], 7, true);
 			break;
 		}
 
 		case BLOCK_I:
 		{
 			POINT[0].X = 3;
-			POINT[0].Y = 0;
+			POINT[0].Y = 2;
 			POINT[1].X = 4;
-			POINT[1].Y = 0;
+			POINT[1].Y = 2;
 			POINT[2].X = 5;
-			POINT[2].Y = 0;
+			POINT[2].Y = 2;
 			POINT[3].X = 6;
-			POINT[3].Y = 0;
+			POINT[3].Y = 2;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
 				return;
 			}
-			p_My[3][0] = TYPE_BLOCK_I;
-			p_My[4][0] = TYPE_BLOCK_I;
-			p_My[5][0] = TYPE_BLOCK_I;
-			p_My[6][0] = TYPE_BLOCK_I;
-			p_My[3][0] = _BitSetting(p_My[3][0], 7, true);
-			p_My[4][0] = _BitSetting(p_My[4][0], 7, true);
-			p_My[5][0] = _BitSetting(p_My[5][0], 7, true);
-			p_My[6][0] = _BitSetting(p_My[6][0], 7, true);
+			p_My[3][2] = TYPE_BLOCK_I;
+			p_My[4][2] = TYPE_BLOCK_I;
+			p_My[5][2] = TYPE_BLOCK_I;
+			p_My[6][2] = TYPE_BLOCK_I;
+			p_My[3][2] = _BitSetting(p_My[3][2], 7, true);
+			p_My[4][2] = _BitSetting(p_My[4][2], 7, true);
+			p_My[5][2] = _BitSetting(p_My[5][2], 7, true);
+			p_My[6][2] = _BitSetting(p_My[6][2], 7, true);
 
 			POINT[2].R = true;
 			break;
@@ -82,25 +82,25 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 		case BLOCK_T:
 		{
 			POINT[0].X = 5;
-			POINT[0].Y = 0;
+			POINT[0].Y = 2;
 			POINT[1].X = 4;
-			POINT[1].Y = 1;
+			POINT[1].Y = 3;
 			POINT[2].X = 5;
-			POINT[2].Y = 1;
+			POINT[2].Y = 3;
 			POINT[3].X = 6;
-			POINT[3].Y = 1;
+			POINT[3].Y = 3;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
 				return;
 			}
-			p_My[5][0] = TYPE_BLOCK_T;
-			p_My[4][1] = TYPE_BLOCK_T;
-			p_My[5][1] = TYPE_BLOCK_T;
-			p_My[6][1] = TYPE_BLOCK_T;
-			p_My[5][0] = _BitSetting(p_My[5][0], 7, true);
-			p_My[4][1] = _BitSetting(p_My[4][1], 7, true);
-			p_My[5][1] = _BitSetting(p_My[5][1], 7, true);
-			p_My[6][1] = _BitSetting(p_My[6][1], 7, true);
+			p_My[5][2] = TYPE_BLOCK_T;
+			p_My[4][3] = TYPE_BLOCK_T;
+			p_My[5][3] = TYPE_BLOCK_T;
+			p_My[6][3] = TYPE_BLOCK_T;
+			p_My[5][2] = _BitSetting(p_My[5][2], 7, true);
+			p_My[4][3] = _BitSetting(p_My[4][3], 7, true);
+			p_My[5][3] = _BitSetting(p_My[5][3], 7, true);
+			p_My[6][3] = _BitSetting(p_My[6][3], 7, true);
 
 			POINT[2].R = true;
 			break;
@@ -109,25 +109,25 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 		case BLOCK_J:
 		{
 			POINT[0].X = 4;
-			POINT[0].Y = 0;
+			POINT[0].Y = 2;
 			POINT[1].X = 5;
-			POINT[1].Y = 0;
+			POINT[1].Y = 2;
 			POINT[2].X = 6;
-			POINT[2].Y = 0;
+			POINT[2].Y = 2;
 			POINT[3].X = 6;
-			POINT[3].Y = 1;
+			POINT[3].Y = 3;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
 				return;
 			}
-			p_My[4][0] = TYPE_BLOCK_J;
-			p_My[5][0] = TYPE_BLOCK_J;
-			p_My[6][0] = TYPE_BLOCK_J;
-			p_My[6][1] = TYPE_BLOCK_J;
-			p_My[4][0] = _BitSetting(p_My[4][0], 7, true);
-			p_My[5][0] = _BitSetting(p_My[5][0], 7, true);
-			p_My[6][0] = _BitSetting(p_My[6][0], 7, true);
-			p_My[6][1] = _BitSetting(p_My[6][1], 7, true);
+			p_My[4][2] = TYPE_BLOCK_J;
+			p_My[5][2] = TYPE_BLOCK_J;
+			p_My[6][2] = TYPE_BLOCK_J;
+			p_My[6][3] = TYPE_BLOCK_J;
+			p_My[4][2] = _BitSetting(p_My[4][2], 7, true);
+			p_My[5][2] = _BitSetting(p_My[5][2], 7, true);
+			p_My[6][2] = _BitSetting(p_My[6][2], 7, true);
+			p_My[6][3] = _BitSetting(p_My[6][3], 7, true);
 
 			POINT[1].R = true;
 			break;
@@ -136,25 +136,25 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 		case BLOCK_L:
 		{
 			POINT[0].X = 4;
-			POINT[0].Y = 0;
+			POINT[0].Y = 2;
 			POINT[1].X = 4;
-			POINT[1].Y = 1;
+			POINT[1].Y = 3;
 			POINT[2].X = 5;
-			POINT[2].Y = 1;
+			POINT[2].Y = 3;
 			POINT[3].X = 6;
-			POINT[3].Y = 1;
+			POINT[3].Y = 3;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
 				return;
 			}
-			p_My[4][0] = TYPE_BLOCK_L;
-			p_My[4][1] = TYPE_BLOCK_L;
-			p_My[5][1] = TYPE_BLOCK_L;
-			p_My[6][1] = TYPE_BLOCK_L;
-			p_My[4][0] = _BitSetting(p_My[4][0], 7, true);
-			p_My[4][1] = _BitSetting(p_My[4][1], 7, true);
-			p_My[5][1] = _BitSetting(p_My[5][1], 7, true);
-			p_My[6][1] = _BitSetting(p_My[6][1], 7, true);
+			p_My[4][2] = TYPE_BLOCK_L;
+			p_My[4][3] = TYPE_BLOCK_L;
+			p_My[5][3] = TYPE_BLOCK_L;
+			p_My[6][3] = TYPE_BLOCK_L;
+			p_My[4][2] = _BitSetting(p_My[4][2], 7, true);
+			p_My[4][3] = _BitSetting(p_My[4][3], 7, true);
+			p_My[5][3] = _BitSetting(p_My[5][3], 7, true);
+			p_My[6][3] = _BitSetting(p_My[6][3], 7, true);
 
 			POINT[2].R = true;
 			break;
@@ -163,25 +163,25 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 		case BLOCK_S:
 		{
 			POINT[0].X = 4;
-			POINT[0].Y = 0;
+			POINT[0].Y = 2;
 			POINT[1].X = 5;
-			POINT[1].Y = 0;
+			POINT[1].Y = 2;
 			POINT[2].X = 5;
-			POINT[2].Y = 1;
+			POINT[2].Y = 3;
 			POINT[3].X = 6;
-			POINT[3].Y = 1;
+			POINT[3].Y = 3;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
 				return;
 			}
-			p_My[4][0] = TYPE_BLOCK_S;
-			p_My[5][0] = TYPE_BLOCK_S;
-			p_My[5][1] = TYPE_BLOCK_S;
-			p_My[6][1] = TYPE_BLOCK_S;
-			p_My[4][0] = _BitSetting(p_My[4][0], 7, true);
-			p_My[5][0] = _BitSetting(p_My[5][0], 7, true);
-			p_My[5][1] = _BitSetting(p_My[5][1], 7, true);
-			p_My[6][1] = _BitSetting(p_My[6][1], 7, true);
+			p_My[4][2] = TYPE_BLOCK_S;
+			p_My[5][2] = TYPE_BLOCK_S;
+			p_My[5][3] = TYPE_BLOCK_S;
+			p_My[6][3] = TYPE_BLOCK_S;
+			p_My[4][2] = _BitSetting(p_My[4][2], 7, true);
+			p_My[5][2] = _BitSetting(p_My[5][2], 7, true);
+			p_My[5][3] = _BitSetting(p_My[5][3], 7, true);
+			p_My[6][3] = _BitSetting(p_My[6][3], 7, true);
 
 			POINT[2].R = true;
 			break;
@@ -190,25 +190,25 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 		case BLOCK_Z:
 		{
 			POINT[0].X = 5;
-			POINT[0].Y = 0;
+			POINT[0].Y = 2;
 			POINT[1].X = 6;
-			POINT[1].Y = 0;
+			POINT[1].Y = 2;
 			POINT[2].X = 4;
-			POINT[2].Y = 1;
+			POINT[2].Y = 3;
 			POINT[3].X = 5;
-			POINT[3].Y = 1;
+			POINT[3].Y = 3;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
 				return;
 			}
-			p_My[5][0] = TYPE_BLOCK_Z;
-			p_My[6][0] = TYPE_BLOCK_Z;
-			p_My[4][1] = TYPE_BLOCK_Z;
-			p_My[5][1] = TYPE_BLOCK_Z;
-			p_My[5][0] = _BitSetting(p_My[5][0], 7, true);
-			p_My[6][0] = _BitSetting(p_My[6][0], 7, true);
-			p_My[4][1] = _BitSetting(p_My[4][1], 7, true);
-			p_My[5][1] = _BitSetting(p_My[5][1], 7, true);
+			p_My[5][2] = TYPE_BLOCK_Z;
+			p_My[6][2] = TYPE_BLOCK_Z;
+			p_My[4][3] = TYPE_BLOCK_Z;
+			p_My[5][3] = TYPE_BLOCK_Z;
+			p_My[5][2] = _BitSetting(p_My[5][2], 7, true);
+			p_My[6][2] = _BitSetting(p_My[6][2], 7, true);
+			p_My[4][3] = _BitSetting(p_My[4][3], 7, true);
+			p_My[5][3] = _BitSetting(p_My[5][3], 7, true);
 
 			POINT[3].R = true;
 			break;
@@ -307,7 +307,7 @@ bool __fastcall C_BLOCK::MoveRight() {
 		POINT[i].Y = y;
 	}
 
-	FormMain->PrintMessage(L"MOVE RIGHT !");
+	//FormMain->PrintMessage(L"MOVE RIGHT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -348,7 +348,7 @@ bool __fastcall C_BLOCK::MoveLeft() {
 		POINT[i].Y = y;
 	}
 
-	FormMain->PrintMessage(L"MOVE LEFT !");
+	//FormMain->PrintMessage(L"MOVE LEFT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -364,7 +364,7 @@ bool __fastcall C_BLOCK::MoveDown() {
 	for(int i = 0 ; i < 4 ; i++) {
 		x = POINT[i].X;
 		y = POINT[i].Y;
-		if(y == 19) {
+		if(y == 21) {
 			Complete();
 			CheckLineClear();
 			return true;
@@ -397,16 +397,16 @@ bool __fastcall C_BLOCK::MoveDown() {
 		POINT[i].Y = y + 1;
 	}
 
-	FormMain->PrintMessage(L"MOVE DOWN !");
+	//FormMain->PrintMessage(L"MOVE DOWN !");
 	return false;
 }
 //---------------------------------------------------------------------------
 
 bool __fastcall C_BLOCK::Drop() {
 
-	for(int i = 0 ; i < 20 ; i++) {
+	for(int i = 0 ; i < MAX_GRID_Y ; i++) {
 		if(MoveDown()) {
-			FormMain->PrintMessage(L"DROP !");
+			//FormMain->PrintMessage(L"DROP !");
 			return true;
 		}
 	}
@@ -417,7 +417,7 @@ bool __fastcall C_BLOCK::Drop() {
 bool __fastcall C_BLOCK::RotateRight() {
 	///***** PRE RETURN IF BLOCK IS O *****///
 	if(Type == BLOCK_O) {
-        FormMain->PrintMessage(L"BLOCK O !");
+		//FormMain->PrintMessage(L"BLOCK O !");
 		return false;
 	}
 
@@ -486,7 +486,7 @@ bool __fastcall C_BLOCK::RotateRight() {
 		POINT[i].Y = y;
 	}
 
-	FormMain->PrintMessage(L"ROTATE RIGHT !");
+	//FormMain->PrintMessage(L"ROTATE RIGHT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -494,7 +494,7 @@ bool __fastcall C_BLOCK::RotateRight() {
 bool __fastcall C_BLOCK::RotateLeft() {
 	///***** PRE RETURN IF BLOCK IS O *****///
 	if(Type == BLOCK_O) {
-        FormMain->PrintMessage(L"BLOCK O !");
+		//FormMain->PrintMessage(L"BLOCK O !");
 		return false;
 	}
 
@@ -563,7 +563,7 @@ bool __fastcall C_BLOCK::RotateLeft() {
 		POINT[i].Y = y;
 	}
 
-	FormMain->PrintMessage(L"ROTATE RIGHT !");
+	//FormMain->PrintMessage(L"ROTATE RIGHT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -583,8 +583,8 @@ bool __fastcall C_BLOCK::Complete() {
 bool __fastcall C_BLOCK::CheckLineClear() {
 
 	int t_CheckCnt = 0;
-	for(int y = 0 ; y < 20 ; y++) {
-		for(int x = 0 ; x < 10 ; x++) {
+	for(int y = 0 ; y < MAX_GRID_Y ; y++) {
+		for(int x = 0 ; x < MAX_GRID_X ; x++) {
 			if(p_My[x][y]) t_CheckCnt++;
 		}
 		if(t_CheckCnt == 10) {
@@ -596,12 +596,12 @@ bool __fastcall C_BLOCK::CheckLineClear() {
 //---------------------------------------------------------------------------
 
 void __fastcall C_BLOCK::ClearLine(int _Num) {
-	for(int x = 0 ; x < 10 ; x++) {
+	for(int x = 0 ; x < MAX_GRID_X ; x++) {
 		p_My[x][_Num] = 0;
 	}
 
-	for(int y = _Num - 1 ; y >= 0 ; y--) {
-		for(int x = 0 ; x < 10 ; x++) {
+	for(int y = _Num - 1 ; y >= 2 ; y--) {
+		for(int x = 0 ; x < MAX_GRID_X ; x++) {
 			p_My[x][y + 1] = p_My[x][y];
 		}
     }

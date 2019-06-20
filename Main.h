@@ -82,13 +82,22 @@ __published:	// IDE-managed Components
 	TAdvStringGrid *grid_Mine;
 	TMemo *memo;
 	TButton *btn_START;
-	TEdit *Edit1;
+	TEdit *ed_BLOCK;
 	TPanel *pn_Cover;
+	TAdvStringGrid *grid_NEXT;
+	TAdvStringGrid *grid_P1;
+	TAdvStringGrid *grid_P2;
+	TAdvStringGrid *grid_P3;
+	TAdvStringGrid *grid_P4;
+	TAdvStringGrid *grid_P5;
+	TAdvStringGrid *AdvStringGrid1;
+	TTimer *tm_Level;
 	void __fastcall btn_GOClick(TObject *Sender);
 	void __fastcall btn_LogOutClick(TObject *Sender);
 	void __fastcall grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall btn_STARTClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall tm_LevelTimer(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations

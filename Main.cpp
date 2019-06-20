@@ -170,9 +170,13 @@ BYTE TFormMain::GetBlockStatus(BYTE _src) {
 void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 {
 	memset(&(m_MyView[0][0]), 0, MAX_GRID_X * MAX_GRID_Y);
-	int num = StrToInt(Edit1->Text);
+	int num = 0;
+	srand((unsigned int)GetTickCount());
+	num = rand() % 7;
+	if(ed_BLOCK->Text != L"") num = StrToInt(ed_BLOCK->Text);
 	m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 	RefreshMyGameView();
+	tm_Level->Enabled = true;
 }
 //---------------------------------------------------------------------------
 
@@ -216,6 +220,33 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		delete m_Block;
 		m_Block = NULL;
 		ShowMessage(L"GAME OVER");
+		tm_Level->Enabled = false;
 	}
 }
 //---------------------------------------------------------------------------
+void __fastcall TFormMain::tm_LevelTimer(TObject *Sender)
+{
+	if(!m_Block) return;
+
+	///***** COMMON INIT *****///
+	srand((unsigned int)GetTickCount());
+	int num = rand() % 7;
+
+	bool t_ret = m_Block->MoveDown();
+	if(t_ret) {
+		delete m_Block;
+		m_Block = NULL;
+		m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+	}
+
+	RefreshMyGameView();
+
+	if(!m_CreateSuccess) {
+		delete m_Block;
+		m_Block = NULL;
+		ShowMessage(L"GAME OVER");
+		tm_Level->Enabled = false;
+	}
+}
+//---------------------------------------------------------------------------
+

@@ -114,7 +114,7 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 			POINT[1].Y = 2;
 			POINT[2].X = 6;
 			POINT[2].Y = 2;
-			POINT[3].X = 6;
+			POINT[3].X = 4;
 			POINT[3].Y = 3;
 			if(CheckCanCreate() == false) {
 				*_p_rst = false;
@@ -123,11 +123,11 @@ __fastcall C_BLOCK::C_BLOCK(int _TYPE, unsigned char (*_p_My)[MAX_GRID_Y], bool*
 			p_My[4][2] = TYPE_BLOCK_J;
 			p_My[5][2] = TYPE_BLOCK_J;
 			p_My[6][2] = TYPE_BLOCK_J;
-			p_My[6][3] = TYPE_BLOCK_J;
+			p_My[4][3] = TYPE_BLOCK_J;
 			p_My[4][2] = _BitSetting(p_My[4][2], 7, true);
 			p_My[5][2] = _BitSetting(p_My[5][2], 7, true);
 			p_My[6][2] = _BitSetting(p_My[6][2], 7, true);
-			p_My[6][3] = _BitSetting(p_My[6][3], 7, true);
+			p_My[4][3] = _BitSetting(p_My[4][3], 7, true);
 
 			POINT[1].R = true;
 			break;

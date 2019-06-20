@@ -93,6 +93,7 @@ void __fastcall TFormMain::InitTetris() {
 	}
 	m_Block = NULL;
 	m_CreateSuccess = false;
+	m_Score = 0;
 }
 //---------------------------------------------------------------------------
 
@@ -169,6 +170,8 @@ BYTE TFormMain::GetBlockStatus(BYTE _src) {
 
 void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 {
+	m_Score = 0;
+	AddScore(m_Score);
 	memset(&(m_MyView[0][0]), 0, MAX_GRID_X * MAX_GRID_Y);
 	int num = 0;
 	srand((unsigned int)GetTickCount());
@@ -177,6 +180,12 @@ void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 	m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 	RefreshMyGameView();
 	tm_Level->Enabled = true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::AddScore(int _Value) {
+	m_Score += _Value;
+	lb_Score_Value->Caption = m_Score;
 }
 //---------------------------------------------------------------------------
 

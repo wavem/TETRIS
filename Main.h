@@ -90,8 +90,12 @@ __published:	// IDE-managed Components
 	TAdvStringGrid *grid_P3;
 	TAdvStringGrid *grid_P4;
 	TAdvStringGrid *grid_P5;
-	TAdvStringGrid *AdvStringGrid1;
+	TAdvStringGrid *grid_Items;
 	TTimer *tm_Level;
+	TLabel *lb_Score_Title;
+	TLabel *lb_Score_Value;
+	TLabel *lb_Combo_Title;
+	TLabel *lb_Combo_Value;
 	void __fastcall btn_GOClick(TObject *Sender);
 	void __fastcall btn_LogOutClick(TObject *Sender);
 	void __fastcall grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -114,9 +118,11 @@ public:
 	BYTE m_MyView[MAX_GRID_X][MAX_GRID_Y];
 	C_BLOCK *m_Block;
 	bool m_CreateSuccess;
+	int m_Score;
 
 public: // Control Information
 	BYTE GetBlockStatus(BYTE _src);
+	void __fastcall AddScore(int _Value);
 
 public: // Display
 	void __fastcall RefreshMyGameView();

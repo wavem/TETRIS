@@ -26,8 +26,6 @@ object FormMain: TFormMain
     Color = clGray
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1018
-    ExplicitHeight = 739
     object Notebook_Main: TNotebook
       Left = 0
       Top = 0
@@ -36,8 +34,6 @@ object FormMain: TFormMain
       Align = alClient
       PageIndex = 2
       TabOrder = 0
-      ExplicitWidth = 1018
-      ExplicitHeight = 739
       object TPage
         Left = 0
         Top = 0
@@ -106,8 +102,6 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 2
         Caption = 'Main_Tetris'
-        ExplicitWidth = 1018
-        ExplicitHeight = 739
         object __MainPage_02_Main: TPanel
           Left = 0
           Top = 0
@@ -120,9 +114,58 @@ object FormMain: TFormMain
           ParentBackground = False
           ParentDoubleBuffered = False
           TabOrder = 0
-          ExplicitLeft = 32
-          ExplicitWidth = 1152
-          ExplicitHeight = 752
+          object lb_Score_Title: TLabel
+            Left = 1000
+            Top = 256
+            Width = 65
+            Height = 18
+            Caption = 'SCORE  :'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lb_Score_Value: TLabel
+            Left = 1077
+            Top = 257
+            Width = 10
+            Height = 18
+            Caption = '0'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lb_Combo_Title: TLabel
+            Left = 1000
+            Top = 280
+            Width = 66
+            Height = 18
+            Caption = 'COMBO :'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lb_Combo_Value: TLabel
+            Left = 1077
+            Top = 281
+            Width = 10
+            Height = 18
+            Caption = '0'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
           object btn_LogOut: TcxButton
             Left = 1088
             Top = 720
@@ -1060,7 +1103,7 @@ object FormMain: TFormMain
             SortSettings.DefaultFormat = ssAutomatic
             Version = '7.8.0.1'
           end
-          object AdvStringGrid1: TAdvStringGrid
+          object grid_Items: TAdvStringGrid
             Left = 648
             Top = 688
             Width = 324

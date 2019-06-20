@@ -582,6 +582,7 @@ bool __fastcall C_BLOCK::Complete() {
 
 bool __fastcall C_BLOCK::CheckLineClear() {
 
+	int t_ClearCnt = 0;
 	int t_CheckCnt = 0;
 	for(int y = 0 ; y < MAX_GRID_Y ; y++) {
 		for(int x = 0 ; x < MAX_GRID_X ; x++) {
@@ -589,9 +590,11 @@ bool __fastcall C_BLOCK::CheckLineClear() {
 		}
 		if(t_CheckCnt == 10) {
 			ClearLine(y);
+			t_ClearCnt++;
 		}
 		t_CheckCnt = 0;
 	}
+	FormMain->AddScore(t_ClearCnt);
 }
 //---------------------------------------------------------------------------
 

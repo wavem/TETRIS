@@ -66,6 +66,7 @@
 #pragma link "AdvGrid"
 #pragma link "AdvObj"
 #pragma link "BaseGrid"
+#pragma link "PictureContainer"
 #pragma resource "*.dfm"
 TFormMain *FormMain;
 //---------------------------------------------------------------------------
@@ -79,7 +80,7 @@ __fastcall TFormMain::TFormMain(TComponent* Owner)
 void __fastcall TFormMain::FormCreate(TObject *Sender)
 {
     InitTetris();
-	RefreshMyGameView();
+	//RefreshMyGameView();
 }
 //---------------------------------------------------------------------------
 
@@ -94,14 +95,77 @@ void __fastcall TFormMain::InitTetris() {
 	m_Block = NULL;
 	m_CreateSuccess = false;
 	m_Score = 0;
+
+	///***** LOAD BITMAP IMAGE *****///
+	LoadBMPFiles();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::LoadBMPFiles() {
+
+	///***** BLOCKS *****///
+	m_BmpList[BLOCK_O] = new TBitmap;
+	m_BmpList[BLOCK_O]->LoadFromFile(L".\\IMG\\O.bmp");
+	m_BmpList[BLOCK_I] = new TBitmap;
+	m_BmpList[BLOCK_I]->LoadFromFile(L".\\IMG\\I.bmp");
+	m_BmpList[BLOCK_T] = new TBitmap;
+	m_BmpList[BLOCK_T]->LoadFromFile(L".\\IMG\\T.bmp");
+	m_BmpList[BLOCK_J] = new TBitmap;
+	m_BmpList[BLOCK_J]->LoadFromFile(L".\\IMG\\J.bmp");
+	m_BmpList[BLOCK_L] = new TBitmap;
+	m_BmpList[BLOCK_L]->LoadFromFile(L".\\IMG\\L.bmp");
+	m_BmpList[BLOCK_S] = new TBitmap;
+	m_BmpList[BLOCK_S]->LoadFromFile(L".\\IMG\\S.bmp");
+	m_BmpList[BLOCK_Z] = new TBitmap;
+	m_BmpList[BLOCK_Z]->LoadFromFile(L".\\IMG\\Z.bmp");
+	m_BmpList[BLOCK_N] = new TBitmap;
+	m_BmpList[BLOCK_N]->LoadFromFile(L".\\IMG\\N.bmp");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::grid_MineDrawCell(TObject *Sender, int ACol, int ARow,
+		  TRect &Rect, TGridDrawState State)
+{
+	TAdvStringGrid *p_grid = (TAdvStringGrid*)Sender;
+
+	BYTE t_Byte = 0;
+	t_Byte = GetBlockData(m_MyView[ACol][ARow]);
+	switch(t_Byte) {
+		case TYPE_BLOCK_O:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_O];
+			break;
+		case TYPE_BLOCK_I:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_I];
+			break;
+		case TYPE_BLOCK_T:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_T];
+			break;
+		case TYPE_BLOCK_J:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_J];
+			break;
+		case TYPE_BLOCK_L:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_L];
+			break;
+		case TYPE_BLOCK_S:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_S];
+			break;
+		case TYPE_BLOCK_Z:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_Z];
+			break;
+		default:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_N];
+			break;
+	}
+	p_grid->Canvas->FillRect(Rect);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TFormMain::RefreshMyGameView() {
+	grid_Mine->Refresh();
+#if 0
 	BYTE t_Byte = 0;
 	for(int i = 0 ; i < MAX_GRID_X ; i++) {
 		for(int j = 0 ; j < MAX_GRID_Y ; j++) {
-			//t_Byte = GetBlockStatus(m_MyView[i][j]);
 			t_Byte = GetBlockData(m_MyView[i][j]);
 
 			switch(t_Byte) {
@@ -130,18 +194,9 @@ void __fastcall TFormMain::RefreshMyGameView() {
 					grid_Mine->Colors[i][j] = clBlack;
 					break;
 			}
-
-#if 0
-			if(t_Byte == 0x80) {
-				grid_Mine->Colors[i][j] = clBlue;
-			} else if(t_Byte == 0x30) {
-				grid_Mine->Colors[i][j] = clYellow;
-			} else {
-				grid_Mine->Colors[i][j] = clBlack;
-			}
-#endif
         }
-    }
+	}
+#endif
 }
 //---------------------------------------------------------------------------
 
@@ -258,4 +313,3 @@ void __fastcall TFormMain::tm_LevelTimer(TObject *Sender)
 	}
 }
 //---------------------------------------------------------------------------
-

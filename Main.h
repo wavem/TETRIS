@@ -102,6 +102,8 @@ __published:	// IDE-managed Components
 	void __fastcall btn_STARTClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall tm_LevelTimer(TObject *Sender);
+	void __fastcall grid_MineDrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect,
+          TGridDrawState State);
 
 private:	// User declarations
 public:		// User declarations
@@ -119,6 +121,9 @@ public:
 	C_BLOCK *m_Block;
 	bool m_CreateSuccess;
 	int m_Score;
+	TBitmap *m_BmpList[64];
+	void __fastcall LoadBMPFiles();
+
 
 public: // Control Information
 	BYTE GetBlockStatus(BYTE _src);

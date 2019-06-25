@@ -16,6 +16,8 @@
 #define BLOCK_S 5
 #define BLOCK_Z	6
 
+#define BLOCK_N 7
+
 #define DIRECTION_U 1
 #define DIRECTION_L 2
 #define DIRECTION_R 3

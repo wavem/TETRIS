@@ -38,8 +38,6 @@ object FormMain: TFormMain
         Left = 0
         Top = 0
         Caption = 'Default'
-        ExplicitWidth = 1018
-        ExplicitHeight = 739
         object __MainPage_00_Default: TPanel
           Left = 0
           Top = 0
@@ -50,8 +48,6 @@ object FormMain: TFormMain
           Color = clGray
           ParentBackground = False
           TabOrder = 0
-          ExplicitWidth = 1018
-          ExplicitHeight = 739
         end
       end
       object TPage
@@ -59,8 +55,6 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 1
         Caption = 'Login'
-        ExplicitWidth = 1018
-        ExplicitHeight = 739
         object __MainPage_01_Login: TPanel
           Left = 0
           Top = 0
@@ -71,8 +65,6 @@ object FormMain: TFormMain
           Color = clCream
           ParentBackground = False
           TabOrder = 0
-          ExplicitWidth = 1018
-          ExplicitHeight = 739
           object btn_GO: TAdvGlassButton
             Left = 464
             Top = 440
@@ -176,11 +168,15 @@ object FormMain: TFormMain
             OnClick = btn_LogOutClick
           end
           object grid_Mine: TAdvStringGrid
-            Left = 648
-            Top = -58
+            Left = 649
+            Top = -55
             Width = 324
             Height = 740
             Cursor = crDefault
+            Margins.Left = 0
+            Margins.Top = 0
+            Margins.Right = 0
+            Margins.Bottom = 0
             TabStop = False
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -195,6 +191,7 @@ object FormMain: TFormMain
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
             TabOrder = 1
+            OnDrawCell = grid_MineDrawCell
             OnKeyDown = grid_MineKeyDown
             HoverRowCells = [hcNormal, hcSelected]
             ActiveCellFont.Charset = DEFAULT_CHARSET
@@ -471,7 +468,7 @@ object FormMain: TFormMain
           object grid_P1: TAdvStringGrid
             Left = 32
             Top = 32
-            Width = 163
+            Width = 164
             Height = 321
             Cursor = crDefault
             TabStop = False
@@ -598,7 +595,7 @@ object FormMain: TFormMain
           object grid_P2: TAdvStringGrid
             Left = 206
             Top = 32
-            Width = 163
+            Width = 164
             Height = 321
             Cursor = crDefault
             TabStop = False
@@ -725,7 +722,7 @@ object FormMain: TFormMain
           object grid_P3: TAdvStringGrid
             Left = 32
             Top = 415
-            Width = 163
+            Width = 164
             Height = 321
             Cursor = crDefault
             TabStop = False
@@ -852,7 +849,7 @@ object FormMain: TFormMain
           object grid_P4: TAdvStringGrid
             Left = 206
             Top = 415
-            Width = 163
+            Width = 164
             Height = 321
             Cursor = crDefault
             TabStop = False
@@ -979,7 +976,7 @@ object FormMain: TFormMain
           object grid_P5: TAdvStringGrid
             Left = 380
             Top = 415
-            Width = 163
+            Width = 164
             Height = 321
             Cursor = crDefault
             TabStop = False

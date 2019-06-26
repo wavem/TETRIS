@@ -95,6 +95,9 @@ void __fastcall TFormMain::InitTetris() {
 	m_Block = NULL;
 	m_CreateSuccess = false;
 	m_Score = 0;
+	m_ComboCnt = 0;
+	m_OldScore = 0;
+	m_CleardLineCnt = 0;
 
 	///***** LOAD BITMAP IMAGE *****///
 	LoadBMPFiles();
@@ -270,7 +273,13 @@ void __fastcall TFormMain::PrintMessage(UnicodeString _str) {
 
 void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 {
+	///***** INIT BEFORE GAME START *****///
 	m_Score = 0;
+	m_ComboCnt = 0;
+	m_OldScore = 0;
+	m_CleardLineCnt = 0;
+	lb_Combo_Value->Caption = m_ComboCnt;
+
 	AddScore(m_Score);
 	memset(&(m_MyView[0][0]), 0, MAX_GRID_X * MAX_GRID_Y);
 	RefreshOthersGameView(); // THIS FUNC MUST BE HERE (after memset 0)
@@ -281,12 +290,7 @@ void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 	m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 	RefreshMyGameView();
 	tm_Level->Enabled = true;
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TFormMain::AddScore(int _Value) {
-	m_Score += _Value;
-	lb_Score_Value->Caption = m_Score;
+	grid_Mine->SetFocus();
 }
 //---------------------------------------------------------------------------
 
@@ -314,6 +318,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 			m_Block = NULL;
 			RefreshOthersGameView();
 			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+			CheckCombo();
 		}
 	}
 	if(Key == VK_SPACE) {
@@ -323,6 +328,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 			m_Block = NULL;
 			RefreshOthersGameView();
 			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+			CheckCombo();
 		}
 	}
 
@@ -336,6 +342,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 	}
 }
 //---------------------------------------------------------------------------
+
 void __fastcall TFormMain::tm_LevelTimer(TObject *Sender)
 {
 	if(!m_Block) return;
@@ -349,6 +356,7 @@ void __fastcall TFormMain::tm_LevelTimer(TObject *Sender)
 		delete m_Block;
 		m_Block = NULL;
 		m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+		CheckCombo();
 	}
 
 	RefreshMyGameView();
@@ -359,5 +367,45 @@ void __fastcall TFormMain::tm_LevelTimer(TObject *Sender)
 		ShowMessage(L"GAME OVER");
 		tm_Level->Enabled = false;
 	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::AddScore(int _Value) {
+	switch(_Value) {
+		case 1:
+			m_Score += 10;  // * 1 Valuable
+			break;
+
+		case 2:
+			m_Score += 30;  // * 1.5 Valuable
+			break;
+
+		case 3:
+			m_Score += 60;  // * 2 Valuable
+			break;
+
+		case 4:
+			m_Score += 120; // * 3 Valuable
+			break;
+
+		default:
+			break;
+	}
+	lb_Score_Value->Caption = m_Score;
+	m_CleardLineCnt = _Value;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::CheckCombo() {
+	if(m_OldScore == m_Score) {
+		m_ComboCnt = 0;
+		lb_Combo_Value->Caption = m_ComboCnt;
+		return;
+	}
+	AddScore(m_CleardLineCnt * m_ComboCnt);
+	m_ComboCnt++;
+	lb_Combo_Value->Caption = m_ComboCnt;
+	m_OldScore = m_Score;
+	m_CleardLineCnt = 0;
 }
 //---------------------------------------------------------------------------

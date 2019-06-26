@@ -129,6 +129,10 @@ public:
 
 public: // Control Information
 	void __fastcall AddScore(int _Value);
+	void __fastcall CheckCombo();
+	int m_ComboCnt;
+	int m_OldScore;
+	int m_CleardLineCnt;
 
 public: // Display
 	void __fastcall RefreshMyGameView();

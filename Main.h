@@ -104,6 +104,8 @@ __published:	// IDE-managed Components
 	void __fastcall tm_LevelTimer(TObject *Sender);
 	void __fastcall grid_MineDrawCell(TObject *Sender, int ACol, int ARow, TRect &Rect,
           TGridDrawState State);
+	void __fastcall OnDrawCell_Players(TObject *Sender, int ACol, int ARow, TRect &Rect,
+          TGridDrawState State);
 
 private:	// User declarations
 public:		// User declarations
@@ -126,11 +128,11 @@ public:
 
 
 public: // Control Information
-	BYTE GetBlockStatus(BYTE _src);
 	void __fastcall AddScore(int _Value);
 
 public: // Display
 	void __fastcall RefreshMyGameView();
+	void __fastcall RefreshOthersGameView();
 
 
 ///***** ETC *****///

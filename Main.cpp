@@ -160,8 +160,59 @@ void __fastcall TFormMain::grid_MineDrawCell(TObject *Sender, int ACol, int ARow
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TFormMain::OnDrawCell_Players(TObject *Sender, int ACol, int ARow,
+		  TRect &Rect, TGridDrawState State)
+{
+	TAdvStringGrid *p_grid = (TAdvStringGrid*)Sender;
+
+	BYTE t_Byte = 0;
+	t_Byte = GetBlockData(m_MyView[ACol][ARow + 3]);
+	switch(t_Byte) {
+		case TYPE_BLOCK_O:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_O];
+			break;
+		case TYPE_BLOCK_I:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_I];
+			break;
+		case TYPE_BLOCK_T:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_T];
+			break;
+		case TYPE_BLOCK_J:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_J];
+			break;
+		case TYPE_BLOCK_L:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_L];
+			break;
+		case TYPE_BLOCK_S:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_S];
+			break;
+		case TYPE_BLOCK_Z:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_Z];
+			break;
+		default:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_N];
+			break;
+	}
+	p_grid->Canvas->FillRect(Rect);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::RefreshOthersGameView() {
+	TAdvStringGrid *p_grid = NULL;
+	UnicodeString tempStr = L"";
+
+	for(int i = 1 ; i < 6 ; i++) {
+		tempStr.sprintf(L"grid_P%d", i);
+		p_grid = (TAdvStringGrid*)FindComponent(tempStr);
+		if(!p_grid) continue;
+		p_grid->Refresh();
+    }
+}
+//---------------------------------------------------------------------------
+
 void __fastcall TFormMain::RefreshMyGameView() {
 	grid_Mine->Refresh();
+
 #if 0
 	BYTE t_Byte = 0;
 	for(int i = 0 ; i < MAX_GRID_X ; i++) {
@@ -217,17 +268,12 @@ void __fastcall TFormMain::PrintMessage(UnicodeString _str) {
 }
 //---------------------------------------------------------------------------
 
-BYTE TFormMain::GetBlockStatus(BYTE _src) {
-	//return (_src & 0x3F);
-	return (_src);
-}
-//---------------------------------------------------------------------------
-
 void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 {
 	m_Score = 0;
 	AddScore(m_Score);
 	memset(&(m_MyView[0][0]), 0, MAX_GRID_X * MAX_GRID_Y);
+	RefreshOthersGameView(); // THIS FUNC MUST BE HERE (after memset 0)
 	int num = 0;
 	srand((unsigned int)GetTickCount());
 	num = rand() % 7;
@@ -266,6 +312,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
+			RefreshOthersGameView();
 			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 		}
 	}
@@ -274,6 +321,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
+			RefreshOthersGameView();
 			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 		}
 	}

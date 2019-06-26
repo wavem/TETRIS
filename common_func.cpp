@@ -18,6 +18,11 @@ BYTE GetBlockData(BYTE _src) {
 }
 //---------------------------------------------------------------------------
 
+void SetBlockData(BYTE &_src) {
+	//return _src &= 0x3F; // 0011 1111
+}
+//---------------------------------------------------------------------------
+
 extern BYTE _BitSetting(BYTE _src, int _bitIdx, bool _bool) {
 	BYTE t_byte = _src;
 	BYTE t_01 = 0x01;

@@ -353,6 +353,31 @@ bool __fastcall C_BLOCK::MoveLeft() {
 }
 //---------------------------------------------------------------------------
 
+void __fastcall C_BLOCK::MoveUp() {
+
+	///***** COMMON INIT *****///
+	int x = 0;
+	int y = 0;
+
+	///***** DELETE CURRENT BLOCK *****///
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		p_My[x][y] = 0;
+	}
+
+	///***** RESET CURRENT BLOCK *****///
+	for(int i = 0 ; i < 4 ; i++) {
+		x = POINT[i].X;
+		y = POINT[i].Y;
+		p_My[x][y - 1] = GetBlockType(Type);
+		p_My[x][y - 1] = _BitSetting(p_My[x][y - 1], 7, true);
+		POINT[i].X = x;
+		POINT[i].Y = y - 1;
+	}
+}
+//---------------------------------------------------------------------------
+
 bool __fastcall C_BLOCK::MoveDown() {
 	///***** COMMON INIT *****///
 	int t_CheckCnt = 0;

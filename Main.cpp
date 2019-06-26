@@ -3,8 +3,8 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "common_func.h"
-#include "Define.h"
+//#include "common_func.h"
+//#include "Define.h"
 #include "Main.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -123,6 +123,8 @@ void __fastcall TFormMain::LoadBMPFiles() {
 	m_BmpList[BLOCK_Z]->LoadFromFile(L".\\IMG\\Z.bmp");
 	m_BmpList[BLOCK_N] = new TBitmap;
 	m_BmpList[BLOCK_N]->LoadFromFile(L".\\IMG\\N.bmp");
+	m_BmpList[BLOCK_R] = new TBitmap;
+	m_BmpList[BLOCK_R]->LoadFromFile(L".\\IMG\\R.bmp");
 }
 //---------------------------------------------------------------------------
 
@@ -154,6 +156,9 @@ void __fastcall TFormMain::grid_MineDrawCell(TObject *Sender, int ACol, int ARow
 			break;
 		case TYPE_BLOCK_Z:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_Z];
+			break;
+		case TYPE_STATUS_ROCK:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_R];
 			break;
 		default:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_N];
@@ -191,6 +196,9 @@ void __fastcall TFormMain::OnDrawCell_Players(TObject *Sender, int ACol, int ARo
 			break;
 		case TYPE_BLOCK_Z:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_Z];
+			break;
+		case TYPE_STATUS_ROCK:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_R];
 			break;
 		default:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_N];
@@ -332,6 +340,8 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		}
 	}
 
+	if(Key == 0x31) USE_ITEM_PLUS();
+
 	RefreshMyGameView();
 
 	if(!m_CreateSuccess) {
@@ -407,5 +417,6 @@ void __fastcall TFormMain::CheckCombo() {
 	lb_Combo_Value->Caption = m_ComboCnt;
 	m_OldScore = m_Score;
 	m_CleardLineCnt = 0;
+	CreateRandomItem();
 }
 //---------------------------------------------------------------------------

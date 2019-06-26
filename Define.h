@@ -2,8 +2,6 @@
 
 #ifndef DefineH
 #define DefineH
-//---------------------------------------------------------------------------
-#endif
 
 #define MAX_GRID_X 10
 #define MAX_GRID_Y 23
@@ -16,7 +14,8 @@
 #define BLOCK_S 5
 #define BLOCK_Z	6
 
-#define BLOCK_N 7
+#define BLOCK_N 7 // NOTHING
+#define BLOCK_R 8 // ROCK
 
 #define DIRECTION_U 1
 #define DIRECTION_L 2
@@ -71,5 +70,12 @@ public:
 	bool __fastcall Drop();
 	bool __fastcall RotateRight();
 	bool __fastcall RotateLeft();
+
+
+	///***** SPECIAL METHOD *****///
+	void __fastcall MoveUp();
 };
 //---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+#endif

@@ -2,6 +2,8 @@
 
 #ifndef MainH
 #define MainH
+#include "Define.h"
+#include "common_func.h"
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -137,6 +139,13 @@ public: // Control Information
 public: // Display
 	void __fastcall RefreshMyGameView();
 	void __fastcall RefreshOthersGameView();
+
+public: // ITEM
+	void __fastcall CreateRandomItem();
+	void __fastcall GetItem(int _Idx);
+
+	///***** USING ITEM *****///
+	void __fastcall USE_ITEM_PLUS();
 
 
 ///***** ETC *****///

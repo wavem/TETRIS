@@ -2,27 +2,46 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>1899-12-30 00:00:00.000.893,=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.497,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\common_func.cpp</Transaction>
     <Transaction>1899-12-30 00:00:00.000.399,=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.650,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.149,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.070,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Define.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.070,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.h=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Define.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.323,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Main.dfm=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.497,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.h=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\common_func.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.954,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Tetris_1PCH.h=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.323,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Main.h=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.653,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.305,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.169,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.690,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.179,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.668,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.965,=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp</Transaction>
     <Transaction>1899-12-30 00:00:00.000.269,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>1899-12-30 00:00:00.000.117,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.631,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Tetris.cbproj=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1.cbproj</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.323,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Main.cpp=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
-  </Transactions>
+    <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.543,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Item.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.497,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\common_func.h=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.543,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.h=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Item.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.497,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\common_func.cpp=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.070,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Define.h=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.070,C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Define.cpp=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.631,C:\Users\WAVE\Documents\RAD Studio\Projects\Project1.cbproj=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Tetris.cbproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.179,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.153,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.690,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.305,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.169,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.668,=C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.323,C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.cpp=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Main.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.650,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.149,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.954,C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Tetris_1PCH.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.323,C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.h=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Main.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.323,C:\Users\WAVE\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\WAVE\Desktop\WAVE\Private\Private_Project\Game\Tetris\010_SourceCode\Tetris\Main.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.653,=C:\Users\WAVE\Documents\RAD Studio\Projects\Project1PCH1.h</Transaction>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="common_func.cpp"/>
+    <File Path="common_func.cpp"/>
+    <File Path="common_func.h"/>
+    <File Path="Define.cpp"/>
+    <File Path="Define.cpp"/>
+    <File Path="Define.h"/>
+    <File Path="Item.cpp"/>
+    <File Path="Item.cpp"/>
+    <File Path="Item.h"/>
+    <File Path="Main.cpp"/>
+    <File Path="Main.cpp"/>
+    <File Path="Main.dfm"/>
+    <File Path="Main.h"/>
+    <File Path="Tetris.cpp"/>
+    <File Path="Tetris_1PCH.h"/>
+  </ProjectSortOrder>
 </BorlandProject>

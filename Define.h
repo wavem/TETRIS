@@ -16,11 +16,13 @@
 
 #define BLOCK_N 7 // NOTHING
 #define BLOCK_R 8 // ROCK
+#define ITEM_P  9 // ITEM PLUS
 
 #define DIRECTION_U 1
 #define DIRECTION_L 2
 #define DIRECTION_R 3
 #define DIRECTION_D 4
+
 
 ///***** BLOCK INFORMATION TABLE *****///
 

@@ -125,6 +125,8 @@ void __fastcall TFormMain::LoadBMPFiles() {
 	m_BmpList[BLOCK_N]->LoadFromFile(L".\\IMG\\N.bmp");
 	m_BmpList[BLOCK_R] = new TBitmap;
 	m_BmpList[BLOCK_R]->LoadFromFile(L".\\IMG\\R.bmp");
+	m_BmpList[ITEM_P] = new TBitmap;
+	m_BmpList[ITEM_P]->LoadFromFile(L".\\IMG\\P.bmp");
 }
 //---------------------------------------------------------------------------
 
@@ -159,6 +161,9 @@ void __fastcall TFormMain::grid_MineDrawCell(TObject *Sender, int ACol, int ARow
 			break;
 		case TYPE_STATUS_ROCK:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_R];
+			break;
+		case TYPE_ITEM_PLUS:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[ITEM_P];
 			break;
 		default:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_N];
@@ -199,6 +204,9 @@ void __fastcall TFormMain::OnDrawCell_Players(TObject *Sender, int ACol, int ARo
 			break;
 		case TYPE_STATUS_ROCK:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_R];
+			break;
+		case TYPE_ITEM_PLUS:
+			p_grid->Canvas->Brush->Bitmap = m_BmpList[ITEM_P];
 			break;
 		default:
 			p_grid->Canvas->Brush->Bitmap = m_BmpList[BLOCK_N];
@@ -341,6 +349,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 	}
 
 	if(Key == 0x31) USE_ITEM_PLUS();
+	if(Key == 0x32) USE_ITEM_MINUS();
 
 	RefreshMyGameView();
 

@@ -630,6 +630,8 @@ void __fastcall C_BLOCK::ClearLine(int _Num) {
 
 	for(int y = _Num - 1 ; y >= 2 ; y--) {
 		for(int x = 0 ; x < MAX_GRID_X ; x++) {
+			if(GetBitStatus(p_My[x][y], 7) || GetBitStatus(p_My[x][y], 6)) continue;
+			if(GetBitStatus(p_My[x][y + 1], 7) || GetBitStatus(p_My[x][y + 1], 6)) continue;
 			p_My[x][y + 1] = p_My[x][y];
 		}
     }

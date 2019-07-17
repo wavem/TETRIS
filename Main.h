@@ -70,6 +70,7 @@
 #include "AdvObj.hpp"
 #include "BaseGrid.hpp"
 #include <Vcl.Grids.hpp>
+#include "AdvPanel.hpp"
 //---------------------------------------------------------------------------
 class TFormMain : public TForm
 {
@@ -86,7 +87,6 @@ __published:	// IDE-managed Components
 	TButton *btn_START;
 	TEdit *ed_BLOCK;
 	TPanel *pn_Cover;
-	TAdvStringGrid *grid_NEXT;
 	TAdvStringGrid *grid_P1;
 	TAdvStringGrid *grid_P2;
 	TAdvStringGrid *grid_P3;
@@ -98,6 +98,11 @@ __published:	// IDE-managed Components
 	TLabel *lb_Score_Value;
 	TLabel *lb_Combo_Title;
 	TLabel *lb_Combo_Value;
+	TLabel *lb_Time_Title;
+	TLabel *lb_Time_Value;
+	TTimer *tm_PlayTime;
+	TButton *btn_Test;
+	TImage *img_NextBlock;
 	void __fastcall btn_GOClick(TObject *Sender);
 	void __fastcall btn_LogOutClick(TObject *Sender);
 	void __fastcall grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -108,6 +113,9 @@ __published:	// IDE-managed Components
           TGridDrawState State);
 	void __fastcall OnDrawCell_Players(TObject *Sender, int ACol, int ARow, TRect &Rect,
           TGridDrawState State);
+	void __fastcall tm_PlayTimeTimer(TObject *Sender);
+	void __fastcall btn_TestClick(TObject *Sender);
+
 
 private:	// User declarations
 public:		// User declarations
@@ -139,6 +147,7 @@ public: // Control Information
 public: // Display
 	void __fastcall RefreshMyGameView();
 	void __fastcall RefreshOthersGameView();
+	void __fastcall RefreshNextBlock();
 
 public: // ITEM
 	void __fastcall CreateRandomItem();
@@ -152,6 +161,15 @@ public: // ITEM
 ///***** ETC *****///
 public:
 	void __fastcall PrintMessage(UnicodeString _str);
+
+///***** GAME SYSTEM *****///
+	// TIME
+	int m_time_H;
+	int m_time_M;
+	int m_time_S;
+
+	// NEXT BLOCK
+	int m_NextBlockIdx;
 
 };
 //---------------------------------------------------------------------------

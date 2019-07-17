@@ -67,6 +67,7 @@
 #pragma link "AdvObj"
 #pragma link "BaseGrid"
 #pragma link "PictureContainer"
+#pragma link "AdvPanel"
 #pragma resource "*.dfm"
 TFormMain *FormMain;
 //---------------------------------------------------------------------------
@@ -85,19 +86,33 @@ void __fastcall TFormMain::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 
 void __fastcall TFormMain::InitTetris() {
+
+	///***** START PAGE SETTING *****///
 	Notebook_Main->PageIndex = 1; // Login
 
+
+	///***** INIT VARIABLES *****///
 	for(int i = 0 ; i < MAX_GRID_X ; i++) {
 		for(int j = 0 ; j < MAX_GRID_Y ; j++) {
 			m_MyView[i][j] = 0;
 		}
 	}
+
 	m_Block = NULL;
 	m_CreateSuccess = false;
 	m_Score = 0;
 	m_ComboCnt = 0;
 	m_OldScore = 0;
 	m_CleardLineCnt = 0;
+	m_time_H = 0;
+	m_time_M = 0;
+	m_time_S = 0;
+	m_NextBlockIdx = 0;
+
+
+	///***** RANDOM SETTING *****///
+	srand((unsigned int)GetTickCount());
+
 
 	///***** LOAD BITMAP IMAGE *****///
 	LoadBMPFiles();
@@ -295,18 +310,26 @@ void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 	m_OldScore = 0;
 	m_CleardLineCnt = 0;
 	lb_Combo_Value->Caption = m_ComboCnt;
+	lb_Time_Value->Caption = L"00:00:00";
+	m_time_H = 0;
+	m_time_M = 0;
+	m_time_S = 0;
 
 	AddScore(m_Score);
 	memset(&(m_MyView[0][0]), 0, MAX_GRID_X * MAX_GRID_Y);
 	RefreshOthersGameView(); // THIS FUNC MUST BE HERE (after memset 0)
 	int num = 0;
-	srand((unsigned int)GetTickCount());
 	num = rand() % 7;
 	if(ed_BLOCK->Text != L"") num = StrToInt(ed_BLOCK->Text);
 	m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
 	RefreshMyGameView();
 	tm_Level->Enabled = true;
+	tm_PlayTime->Enabled = true;
 	grid_Mine->SetFocus();
+
+	///***** SETTING NEXT BLOCK *****///
+	m_NextBlockIdx = rand() % 7;
+	RefreshNextBlock();
 }
 //---------------------------------------------------------------------------
 
@@ -317,8 +340,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 	bool t_ret = false;
 
 	///***** COMMON INIT *****///
-	srand((unsigned int)GetTickCount());
-	int num = rand() % 7;
+	//int num = rand() % 7;
 
 	///***** KEY MAP *****///
 	if(Key == VK_RIGHT) t_ret = m_Block->MoveRight();
@@ -333,8 +355,12 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 			delete m_Block;
 			m_Block = NULL;
 			RefreshOthersGameView();
-			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+			m_Block = new C_BLOCK(m_NextBlockIdx, m_MyView, &m_CreateSuccess);
 			CheckCombo();
+
+			///***** SETTING NEXT BLOCK *****///
+			m_NextBlockIdx = rand() % 7;
+			RefreshNextBlock();
 		}
 	}
 	if(Key == VK_SPACE) {
@@ -342,9 +368,13 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
-			RefreshOthersGameView();
-			m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+			//RefreshOthersGameView();
+			m_Block = new C_BLOCK(m_NextBlockIdx, m_MyView, &m_CreateSuccess);
 			CheckCombo();
+
+			///***** SETTING NEXT BLOCK *****///
+			m_NextBlockIdx = rand() % 7;
+			RefreshNextBlock();
 		}
 	}
 
@@ -358,6 +388,11 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		m_Block = NULL;
 		ShowMessage(L"GAME OVER");
 		tm_Level->Enabled = false;
+		tm_PlayTime->Enabled = false;
+
+		///***** RESET NEXT BLOCK IMAGE *****///
+		m_NextBlockIdx = -1; // -1 means nothing just black screen
+        RefreshNextBlock();
 	}
 }
 //---------------------------------------------------------------------------
@@ -366,16 +401,16 @@ void __fastcall TFormMain::tm_LevelTimer(TObject *Sender)
 {
 	if(!m_Block) return;
 
-	///***** COMMON INIT *****///
-	srand((unsigned int)GetTickCount());
-	int num = rand() % 7;
-
 	bool t_ret = m_Block->MoveDown();
 	if(t_ret) {
 		delete m_Block;
 		m_Block = NULL;
-		m_Block = new C_BLOCK(num, m_MyView, &m_CreateSuccess);
+		m_Block = new C_BLOCK(m_NextBlockIdx, m_MyView, &m_CreateSuccess);
 		CheckCombo();
+
+		///***** SETTING NEXT BLOCK *****///
+		m_NextBlockIdx = rand() % 7;
+		RefreshNextBlock();
 	}
 
 	RefreshMyGameView();
@@ -429,3 +464,218 @@ void __fastcall TFormMain::CheckCombo() {
 	CreateRandomItem();
 }
 //---------------------------------------------------------------------------
+void __fastcall TFormMain::tm_PlayTimeTimer(TObject *Sender)
+{
+	UnicodeString tempStr = L"";
+	if(++m_time_S == 60) {
+		if(++m_time_M == 60) {
+			++m_time_H;
+		}
+	}
+	tempStr.sprintf(L"%02d:%02d:%02d", m_time_H, m_time_M, m_time_S);
+	lb_Time_Value->Caption = tempStr;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::btn_TestClick(TObject *Sender)
+{
+	int info = StrToInt(ed_BLOCK->Text);
+	m_NextBlockIdx = info;
+	RefreshNextBlock();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::RefreshNextBlock() {
+
+	///***** RESET NEXT BLOCK IMAGE *****///
+	TRect t_Rect;
+	t_Rect.init(0, 0, img_NextBlock->Width, img_NextBlock->Height);
+	img_NextBlock->Canvas->Brush->Color = clBlack;
+	img_NextBlock->Canvas->FillRect(t_Rect);
+
+
+	///***** COMMON INIT *****///
+	int SX = 0; // START X POINT
+	int SY = 0; // START Y POINT
+	int x = 0;
+	int y = 0;
+	int g = 32; // g : GAP
+
+
+	///***** REAL DRAWING *****///
+	switch(m_NextBlockIdx) {
+		case BLOCK_O:
+			SX = 37;
+			SY = 37;
+			img_NextBlock->Canvas->Brush->Bitmap = m_BmpList[BLOCK_O];
+
+			x = SX;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX;
+			y = SY + g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX + g + 1;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX + g + 1;
+			y = SY + g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+			break;
+
+		case BLOCK_I:
+			SX = 4;
+			SY = 54;
+			img_NextBlock->Canvas->Brush->Bitmap = m_BmpList[BLOCK_I];
+
+			x = SX;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+			break;
+
+		case BLOCK_T:
+			SX = 20;
+			SY = 67;
+			img_NextBlock->Canvas->Brush->Bitmap = m_BmpList[BLOCK_T];
+
+			x = SX;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX + g + 1;
+			y = SY - g - 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+			break;
+
+		case BLOCK_J:
+			SX = 23;
+			SY = 38;
+			img_NextBlock->Canvas->Brush->Bitmap = m_BmpList[BLOCK_J];
+
+			x = SX;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX;
+			y = SY + g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+			break;
+
+		case BLOCK_L:
+			SX = 24;
+			SY = 66;
+			img_NextBlock->Canvas->Brush->Bitmap = m_BmpList[BLOCK_L];
+
+			x = SX;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX;
+			y = SY - g - 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+			break;
+
+		case BLOCK_S:
+		    SX = 21;
+			SY = 37;
+			img_NextBlock->Canvas->Brush->Bitmap = m_BmpList[BLOCK_S];
+
+			x = SX;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX + g + 1;
+			y = SY + g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+			break;
+
+		case BLOCK_Z:
+		    SX = 54;
+			SY = 37;
+			img_NextBlock->Canvas->Brush->Bitmap = m_BmpList[BLOCK_Z];
+
+			x = SX;
+			y = SY;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x = SX - g - 1;
+			y = SY + g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+
+			x += g + 1;
+			t_Rect.init(x, y, x + g, y + g);
+			img_NextBlock->Canvas->FillRect(t_Rect);
+			break;
+
+		default:
+			break;
+	}
+}
+//---------------------------------------------------------------------------
+

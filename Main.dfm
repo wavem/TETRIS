@@ -38,8 +38,6 @@ object FormMain: TFormMain
         Left = 0
         Top = 0
         Caption = 'Default'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object __MainPage_00_Default: TPanel
           Left = 0
           Top = 0
@@ -57,8 +55,6 @@ object FormMain: TFormMain
         Top = 0
         HelpContext = 1
         Caption = 'Login'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object __MainPage_01_Login: TPanel
           Left = 0
           Top = 0
@@ -161,6 +157,38 @@ object FormMain: TFormMain
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+          end
+          object lb_Time_Title: TLabel
+            Left = 1000
+            Top = 230
+            Width = 47
+            Height = 18
+            Caption = 'TIME :'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lb_Time_Value: TLabel
+            Left = 1053
+            Top = 231
+            Width = 70
+            Height = 18
+            Caption = '00:00:00'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -15
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object img_NextBlock: TImage
+            Left = 1000
+            Top = 46
+            Width = 140
+            Height = 140
           end
           object btn_LogOut: TcxButton
             Left = 1088
@@ -343,132 +371,6 @@ object FormMain: TFormMain
             ParentBackground = False
             TabOrder = 5
           end
-          object grid_NEXT: TAdvStringGrid
-            Left = 1015
-            Top = 39
-            Width = 90
-            Height = 46
-            Cursor = crDefault
-            TabStop = False
-            BevelInner = bvNone
-            BevelOuter = bvNone
-            Color = clBlack
-            ColCount = 4
-            DefaultColWidth = 22
-            DrawingStyle = gdsClassic
-            FixedCols = 0
-            RowCount = 2
-            FixedRows = 0
-            Options = [goVertLine, goHorzLine]
-            ScrollBars = ssNone
-            TabOrder = 6
-            OnKeyDown = grid_MineKeyDown
-            HoverRowCells = [hcNormal, hcSelected]
-            ActiveCellFont.Charset = DEFAULT_CHARSET
-            ActiveCellFont.Color = clWindowText
-            ActiveCellFont.Height = -11
-            ActiveCellFont.Name = 'Tahoma'
-            ActiveCellFont.Style = [fsBold]
-            ControlLook.FixedGradientHoverFrom = clGray
-            ControlLook.FixedGradientHoverTo = clWhite
-            ControlLook.FixedGradientDownFrom = clGray
-            ControlLook.FixedGradientDownTo = clSilver
-            ControlLook.DropDownHeader.Font.Charset = DEFAULT_CHARSET
-            ControlLook.DropDownHeader.Font.Color = clWindowText
-            ControlLook.DropDownHeader.Font.Height = -11
-            ControlLook.DropDownHeader.Font.Name = 'Tahoma'
-            ControlLook.DropDownHeader.Font.Style = []
-            ControlLook.DropDownHeader.Visible = True
-            ControlLook.DropDownHeader.Buttons = <>
-            ControlLook.DropDownFooter.Font.Charset = DEFAULT_CHARSET
-            ControlLook.DropDownFooter.Font.Color = clWindowText
-            ControlLook.DropDownFooter.Font.Height = -11
-            ControlLook.DropDownFooter.Font.Name = 'Tahoma'
-            ControlLook.DropDownFooter.Font.Style = []
-            ControlLook.DropDownFooter.Visible = True
-            ControlLook.DropDownFooter.Buttons = <>
-            EnableHTML = False
-            EnableWheel = False
-            EnhRowColMove = False
-            Filter = <>
-            FilterDropDown.Font.Charset = DEFAULT_CHARSET
-            FilterDropDown.Font.Color = clWindowText
-            FilterDropDown.Font.Height = -11
-            FilterDropDown.Font.Name = 'Tahoma'
-            FilterDropDown.Font.Style = []
-            FilterDropDown.TextChecked = 'Checked'
-            FilterDropDown.TextUnChecked = 'Unchecked'
-            FilterDropDownMultiCol = False
-            FilterDropDownClear = '(All)'
-            FilterEdit.TypeNames.Strings = (
-              'Starts with'
-              'Ends with'
-              'Contains'
-              'Not contains'
-              'Equal'
-              'Not equal'
-              'Larger than'
-              'Smaller than'
-              'Clear')
-            FixedColWidth = 22
-            FixedRowHeight = 22
-            FixedFont.Charset = DEFAULT_CHARSET
-            FixedFont.Color = clWindowText
-            FixedFont.Height = -11
-            FixedFont.Name = 'Tahoma'
-            FixedFont.Style = [fsBold]
-            FloatFormat = '%.2f'
-            HideFocusRect = True
-            HoverButtons.Buttons = <>
-            HoverButtons.Position = hbLeftFromColumnLeft
-            HTMLSettings.ImageFolder = 'images'
-            HTMLSettings.ImageBaseName = 'img'
-            IntelliZoom = False
-            Look = glSoft
-            MouseActions.AutoSizeColOnDblClick = False
-            PrintSettings.DateFormat = 'dd/mm/yyyy'
-            PrintSettings.Font.Charset = DEFAULT_CHARSET
-            PrintSettings.Font.Color = clWindowText
-            PrintSettings.Font.Height = -11
-            PrintSettings.Font.Name = 'Tahoma'
-            PrintSettings.Font.Style = []
-            PrintSettings.FixedFont.Charset = DEFAULT_CHARSET
-            PrintSettings.FixedFont.Color = clWindowText
-            PrintSettings.FixedFont.Height = -11
-            PrintSettings.FixedFont.Name = 'Tahoma'
-            PrintSettings.FixedFont.Style = []
-            PrintSettings.HeaderFont.Charset = DEFAULT_CHARSET
-            PrintSettings.HeaderFont.Color = clWindowText
-            PrintSettings.HeaderFont.Height = -11
-            PrintSettings.HeaderFont.Name = 'Tahoma'
-            PrintSettings.HeaderFont.Style = []
-            PrintSettings.FooterFont.Charset = DEFAULT_CHARSET
-            PrintSettings.FooterFont.Color = clWindowText
-            PrintSettings.FooterFont.Height = -11
-            PrintSettings.FooterFont.Name = 'Tahoma'
-            PrintSettings.FooterFont.Style = []
-            PrintSettings.PageNumSep = '/'
-            SearchFooter.Color = clBtnFace
-            SearchFooter.FindNextCaption = 'Find &next'
-            SearchFooter.FindPrevCaption = 'Find &previous'
-            SearchFooter.Font.Charset = DEFAULT_CHARSET
-            SearchFooter.Font.Color = clWindowText
-            SearchFooter.Font.Height = -11
-            SearchFooter.Font.Name = 'Tahoma'
-            SearchFooter.Font.Style = []
-            SearchFooter.HighLightCaption = 'Highlight'
-            SearchFooter.HintClose = 'Close'
-            SearchFooter.HintFindNext = 'Find next occurrence'
-            SearchFooter.HintFindPrev = 'Find previous occurrence'
-            SearchFooter.HintHighlight = 'Highlight occurrences'
-            SearchFooter.MatchCaseCaption = 'Match case'
-            SelectionColor = clHighlight
-            SelectionTextColor = clHighlightText
-            ShowSelection = False
-            ShowDesignHelper = False
-            SortSettings.DefaultFormat = ssAutomatic
-            Version = '7.8.0.1'
-          end
           object grid_P1: TAdvStringGrid
             Left = 32
             Top = 32
@@ -489,7 +391,7 @@ object FormMain: TFormMain
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
-            TabOrder = 7
+            TabOrder = 6
             OnDrawCell = OnDrawCell_Players
             OnKeyDown = grid_MineKeyDown
             HoverRowCells = [hcNormal, hcSelected]
@@ -618,7 +520,7 @@ object FormMain: TFormMain
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
-            TabOrder = 8
+            TabOrder = 7
             OnDrawCell = OnDrawCell_Players
             OnKeyDown = grid_MineKeyDown
             HoverRowCells = [hcNormal, hcSelected]
@@ -747,7 +649,7 @@ object FormMain: TFormMain
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
-            TabOrder = 9
+            TabOrder = 8
             OnDrawCell = OnDrawCell_Players
             OnKeyDown = grid_MineKeyDown
             HoverRowCells = [hcNormal, hcSelected]
@@ -876,7 +778,7 @@ object FormMain: TFormMain
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
-            TabOrder = 10
+            TabOrder = 9
             OnDrawCell = OnDrawCell_Players
             OnKeyDown = grid_MineKeyDown
             HoverRowCells = [hcNormal, hcSelected]
@@ -1005,7 +907,7 @@ object FormMain: TFormMain
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
-            TabOrder = 11
+            TabOrder = 10
             OnDrawCell = OnDrawCell_Players
             OnKeyDown = grid_MineKeyDown
             HoverRowCells = [hcNormal, hcSelected]
@@ -1133,7 +1035,7 @@ object FormMain: TFormMain
             FixedRows = 0
             Options = [goVertLine, goHorzLine]
             ScrollBars = ssNone
-            TabOrder = 12
+            TabOrder = 11
             OnKeyDown = grid_MineKeyDown
             HoverRowCells = [hcNormal, hcSelected]
             ActiveCellFont.Charset = DEFAULT_CHARSET
@@ -1241,6 +1143,15 @@ object FormMain: TFormMain
             SortSettings.DefaultFormat = ssAutomatic
             Version = '7.8.0.1'
           end
+          object btn_Test: TButton
+            Left = 1088
+            Top = 394
+            Width = 75
+            Height = 25
+            Caption = 'Test'
+            TabOrder = 12
+            OnClick = btn_TestClick
+          end
         end
       end
     end
@@ -1248,5 +1159,10 @@ object FormMain: TFormMain
   object tm_Level: TTimer
     Enabled = False
     OnTimer = tm_LevelTimer
+  end
+  object tm_PlayTime: TTimer
+    Enabled = False
+    OnTimer = tm_PlayTimeTimer
+    Left = 28
   end
 end

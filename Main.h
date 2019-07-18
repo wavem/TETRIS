@@ -103,6 +103,7 @@ __published:	// IDE-managed Components
 	TTimer *tm_PlayTime;
 	TButton *btn_Test;
 	TImage *img_NextBlock;
+	TPanel *pn_Pause;
 	void __fastcall btn_GOClick(TObject *Sender);
 	void __fastcall btn_LogOutClick(TObject *Sender);
 	void __fastcall grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
@@ -167,9 +168,14 @@ public:
 	int m_time_H;
 	int m_time_M;
 	int m_time_S;
+	int m_time_cnt;
+
+	bool m_IsPause;
 
 	// NEXT BLOCK
 	int m_NextBlockIdx;
+
+	int m_Speed;
 
 };
 //---------------------------------------------------------------------------

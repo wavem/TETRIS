@@ -108,6 +108,9 @@ void __fastcall TFormMain::InitTetris() {
 	m_time_M = 0;
 	m_time_S = 0;
 	m_NextBlockIdx = 0;
+	m_IsPause = false;
+	m_Speed = 1000;
+	m_time_cnt = 0;
 
 
 	///***** RANDOM SETTING *****///
@@ -314,10 +317,13 @@ void __fastcall TFormMain::btn_STARTClick(TObject *Sender)
 	m_time_H = 0;
 	m_time_M = 0;
 	m_time_S = 0;
+	m_Speed = 1000;
+	m_time_cnt = 0;
+	tm_Level->Interval = m_Speed;
 
 	AddScore(m_Score);
 	memset(&(m_MyView[0][0]), 0, MAX_GRID_X * MAX_GRID_Y);
-	RefreshOthersGameView(); // THIS FUNC MUST BE HERE (after memset 0)
+	//RefreshOthersGameView(); // THIS FUNC MUST BE HERE (after memset 0)
 	int num = 0;
 	num = rand() % 7;
 	if(ed_BLOCK->Text != L"") num = StrToInt(ed_BLOCK->Text);
@@ -343,6 +349,20 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 	//int num = rand() % 7;
 
 	///***** KEY MAP *****///
+	if(Key == VK_ESCAPE) {
+		m_IsPause = !m_IsPause;
+		if(m_IsPause) {
+			tm_Level->Enabled = false;
+			tm_PlayTime->Enabled = false;
+		} else {
+			tm_Level->Enabled = true;
+			tm_PlayTime->Enabled = true;
+		}
+		pn_Pause->Visible = m_IsPause;
+		return;
+	}
+
+	if(m_IsPause) return;
 	if(Key == VK_RIGHT) t_ret = m_Block->MoveRight();
 	if(Key == VK_LEFT)  t_ret = m_Block->MoveLeft();
 	if(Key == VK_UP)    t_ret = m_Block->RotateRight();
@@ -354,7 +374,7 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 		if(t_ret) {
 			delete m_Block;
 			m_Block = NULL;
-			RefreshOthersGameView();
+			//RefreshOthersGameView();
 			m_Block = new C_BLOCK(m_NextBlockIdx, m_MyView, &m_CreateSuccess);
 			CheckCombo();
 
@@ -386,9 +406,9 @@ void __fastcall TFormMain::grid_MineKeyDown(TObject *Sender, WORD &Key, TShiftSt
 	if(!m_CreateSuccess) {
 		delete m_Block;
 		m_Block = NULL;
-		ShowMessage(L"GAME OVER");
 		tm_Level->Enabled = false;
 		tm_PlayTime->Enabled = false;
+		ShowMessage(L"GAME OVER");
 
 		///***** RESET NEXT BLOCK IMAGE *****///
 		m_NextBlockIdx = -1; // -1 means nothing just black screen
@@ -418,8 +438,9 @@ void __fastcall TFormMain::tm_LevelTimer(TObject *Sender)
 	if(!m_CreateSuccess) {
 		delete m_Block;
 		m_Block = NULL;
-		ShowMessage(L"GAME OVER");
 		tm_Level->Enabled = false;
+		tm_PlayTime->Enabled = false;
+		ShowMessage(L"GAME OVER");
 	}
 }
 //---------------------------------------------------------------------------
@@ -461,19 +482,33 @@ void __fastcall TFormMain::CheckCombo() {
 	lb_Combo_Value->Caption = m_ComboCnt;
 	m_OldScore = m_Score;
 	m_CleardLineCnt = 0;
-	CreateRandomItem();
+	//CreateRandomItem();
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormMain::tm_PlayTimeTimer(TObject *Sender)
 {
 	UnicodeString tempStr = L"";
 	if(++m_time_S == 60) {
+		m_time_S = 0;
 		if(++m_time_M == 60) {
+			m_time_M = 0;
 			++m_time_H;
 		}
 	}
 	tempStr.sprintf(L"%02d:%02d:%02d", m_time_H, m_time_M, m_time_S);
 	lb_Time_Value->Caption = tempStr;
+
+	// SPEED UP
+	if(m_Speed == 100) return;
+
+	m_time_cnt++;
+	if(m_time_cnt % 60 == 0) {
+		m_Speed -= 100;
+		tm_Level->Interval = m_Speed;
+		tempStr.sprintf(L"SPEED UP : %.1f Sec", (double)m_Speed / 1000);
+		PrintMessage(tempStr);
+		if(m_Speed == 100) PrintMessage(L"MAX SPEED");
+	}
 }
 //---------------------------------------------------------------------------
 

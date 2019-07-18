@@ -1152,6 +1152,24 @@ object FormMain: TFormMain
             TabOrder = 12
             OnClick = btn_TestClick
           end
+          object pn_Pause: TPanel
+            Left = 720
+            Top = 313
+            Width = 184
+            Height = 41
+            BevelOuter = bvNone
+            Caption = 'PAUSED'
+            Color = clRed
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -53
+            Font.Name = 'Calibri'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 13
+            Visible = False
+          end
         end
       end
     end

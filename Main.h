@@ -72,6 +72,7 @@
 #include <Vcl.Grids.hpp>
 #include "AdvPanel.hpp"
 //---------------------------------------------------------------------------
+#include "Comm.h"
 class TFormMain : public TForm
 {
 __published:	// IDE-managed Components
@@ -161,7 +162,7 @@ public: // ITEM
 
 ///***** ETC *****///
 public:
-	void __fastcall PrintMessage(UnicodeString _str);
+	void __fastcall PringMsg(UnicodeString _str);
 
 ///***** GAME SYSTEM *****///
 	// TIME
@@ -176,6 +177,10 @@ public:
 	int m_NextBlockIdx;
 
 	int m_Speed;
+
+	///***** COMM *****///
+	CThreadMulticast *m_TH_MTC_GNR;
+	CThreadMulticast *m_TH_MTC_CHT;
 
 };
 //---------------------------------------------------------------------------

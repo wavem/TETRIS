@@ -307,7 +307,7 @@ bool __fastcall C_BLOCK::MoveRight() {
 		POINT[i].Y = y;
 	}
 
-	//FormMain->PrintMessage(L"MOVE RIGHT !");
+	//FormMain->PringMsg(L"MOVE RIGHT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -348,7 +348,7 @@ bool __fastcall C_BLOCK::MoveLeft() {
 		POINT[i].Y = y;
 	}
 
-	//FormMain->PrintMessage(L"MOVE LEFT !");
+	//FormMain->PringMsg(L"MOVE LEFT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -422,7 +422,7 @@ bool __fastcall C_BLOCK::MoveDown() {
 		POINT[i].Y = y + 1;
 	}
 
-	//FormMain->PrintMessage(L"MOVE DOWN !");
+	//FormMain->PringMsg(L"MOVE DOWN !");
 	return false;
 }
 //---------------------------------------------------------------------------
@@ -431,7 +431,7 @@ bool __fastcall C_BLOCK::Drop() {
 
 	for(int i = 0 ; i < MAX_GRID_Y ; i++) {
 		if(MoveDown()) {
-			//FormMain->PrintMessage(L"DROP !");
+			//FormMain->PringMsg(L"DROP !");
 			return true;
 		}
 	}
@@ -442,7 +442,7 @@ bool __fastcall C_BLOCK::Drop() {
 bool __fastcall C_BLOCK::RotateRight() {
 	///***** PRE RETURN IF BLOCK IS O *****///
 	if(Type == BLOCK_O) {
-		//FormMain->PrintMessage(L"BLOCK O !");
+		//FormMain->PringMsg(L"BLOCK O !");
 		return false;
 	}
 
@@ -511,7 +511,7 @@ bool __fastcall C_BLOCK::RotateRight() {
 		POINT[i].Y = y;
 	}
 
-	//FormMain->PrintMessage(L"ROTATE RIGHT !");
+	//FormMain->PringMsg(L"ROTATE RIGHT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -519,7 +519,7 @@ bool __fastcall C_BLOCK::RotateRight() {
 bool __fastcall C_BLOCK::RotateLeft() {
 	///***** PRE RETURN IF BLOCK IS O *****///
 	if(Type == BLOCK_O) {
-		//FormMain->PrintMessage(L"BLOCK O !");
+		//FormMain->PringMsg(L"BLOCK O !");
 		return false;
 	}
 
@@ -588,7 +588,7 @@ bool __fastcall C_BLOCK::RotateLeft() {
 		POINT[i].Y = y;
 	}
 
-	//FormMain->PrintMessage(L"ROTATE RIGHT !");
+	//FormMain->PringMsg(L"ROTATE RIGHT !");
 	return true;
 }
 //---------------------------------------------------------------------------
@@ -620,6 +620,7 @@ bool __fastcall C_BLOCK::CheckLineClear() {
 		t_CheckCnt = 0;
 	}
 	FormMain->AddScore(t_ClearCnt);
+	return true;
 }
 //---------------------------------------------------------------------------
 

@@ -9,7 +9,7 @@
 
 void __fastcall TFormMain::CreateRandomItem() {
 
-	PrintMessage(L"CREATE RANDOM ITEM");
+	PringMsg(L"CREATE RANDOM ITEM");
 
 	///***** COMMON INIT *****///
 	BYTE t_Byte = 0;
@@ -95,7 +95,7 @@ void __fastcall TFormMain::USE_ITEM_PLUS() {
 
 	///***** CASE : FULL *****///
 	if(t_TopLine == 2) {
-		PrintMessage(L"GAME OVER");
+		PringMsg(L"GAME OVER");
 	}
 
 

@@ -300,7 +300,7 @@ void __fastcall TFormMain::btn_LogOutClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TFormMain::PrintMessage(UnicodeString _str) {
+void __fastcall TFormMain::PringMsg(UnicodeString _str) {
 	memo->Lines->Add(_str);
 }
 //---------------------------------------------------------------------------
@@ -506,8 +506,8 @@ void __fastcall TFormMain::tm_PlayTimeTimer(TObject *Sender)
 		m_Speed -= 100;
 		tm_Level->Interval = m_Speed;
 		tempStr.sprintf(L"SPEED UP : %.1f Sec", (double)m_Speed / 1000);
-		PrintMessage(tempStr);
-		if(m_Speed == 100) PrintMessage(L"MAX SPEED");
+		PringMsg(tempStr);
+		if(m_Speed == 100) PringMsg(L"MAX SPEED");
 	}
 }
 //---------------------------------------------------------------------------
